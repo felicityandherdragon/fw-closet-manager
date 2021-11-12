@@ -4,9 +4,38 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
+    "dev": "parcel public/index.html",
+    "start": "NODE_ENV=production npm run seed && node server",
+    "start:dev": "npm run dev & npm run start-server",
+    "start:dev:logger": "LOGGING=true npm run start:dev",
+    "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
+    "prepare": "husky install",
+    "seed": "node script/seed.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "faker": "^5.5.3",
+    "pg": "^8.7.1",
+    "sequelize": "^6.9.0"
+  },
+  "devDependencies": {
+    "axios": "^0.24.0",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.4",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
+    "parcel": "^2.0.1",
+    "prettier": "^2.4.1"
+  },
+  "browserslist": [
+    "last 2 Chrome versions"
+  ]
 }
