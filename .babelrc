@@ -1,0 +1,18 @@
+{
+  "presets": [
+    // @parcel/transformer-babel: Parcel includes transpilation by default.
+    // Babel config .babelrc includes the following redundant presets:
+    // @babel/preset-react, @babel/preset-env. Removing these may improve build
+    // performance, but cant remove here because other libraries still need them.
+    // a separate .parcelrc is thus needed to tell parcel to ignore these "redundant"
+    // presets at compilation
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic"
+      }
+    ],
+    "@babel/preset-env"
+  ],
+  "plugins": ["@babel/plugin-proposal-class-properties"]
+}

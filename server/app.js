@@ -17,11 +17,11 @@ app.use(express.urlencoded({ extended: true }));
 // auth and api routes
 app.use('/api', require('./api'));
 app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '..', 'public/index.html'))
+  res.sendFile(path.join(__dirname, '..', 'dist/index.html'))
 );
 
 // static file-serving middleware
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, '..', 'dist')));
 
 // any remaining requests with an extension (.js, .css, etc.) send 404
 app.use((req, res, next) => {
@@ -37,7 +37,7 @@ app.use((req, res, next) => {
 // sends index.html
 app.use('*', (req, res) => {
   console.log(__dirname);
-  res.sendFile(path.join(__dirname, '..', 'public/index.html'));
+  res.sendFile(path.join(__dirname, '..', 'dist/index.html'));
 });
 
 // error handling endware
