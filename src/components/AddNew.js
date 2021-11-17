@@ -1,9 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { TiCameraOutline, TiUploadOutline } from 'react-icons/ti';
+import WebcamComponent from './Webcam';
+import UploadBox from './UploadBox';
 
 const AddNew = () => {
+  const [showCamera, setShowCamera] = useState(false);
+  const [showUpload, setShowUpload] = useState(false);
+
+  const launchCamera = () => {
+    setShowCamera(true);
+  };
+
+  const launchUpload = () => {
+    setShowUpload(true);
+  };
+
   return (
-    <div>
-      <p>This is where you add new items</p>
+    <div className="grid grid-cols-2 h-screen">
+      <div className="col-span-1 bg-green grid grid-cols-4 grid-rows-6">
+        <div className="col-start-2 col-end-4 row-start-3 row-end-5 rounded-lg text-xl bg-grey-light shadow-md flex flex-col justify-center place-items-center hover:shadow-2xl bg-gradient-to-r hover:from-green-light to-transparent">
+          <TiCameraOutline />
+          <button onClick={() => launchCamera()}>Take a picture</button>
+          {showCamera && (
+            <WebcamComponent
+              showCamera={showCamera}
+              setShowCamera={setShowCamera}
+            />
+          )}
+        </div>
+      </div>
+      <div className="col-span-1 bg-blue grid grid-cols-4 grid-rows-6">
+        <div className="col-start-2 col-end-4 row-start-3 row-end-5 rounded-lg text-xl bg-grey-light shadow-md flex flex-col justify-center place-items-center hover:shadow-2xl bg-gradient-to-r hover:from-blue-light to-transparent">
+          <TiUploadOutline />
+          <button onClick={() => launchUpload()}>upload a picture</button>
+          {showUpload && (
+            <UploadBox
+              showUpload={showUpload}
+              setShowUpload={setShowUpload}
+            />
+          )}
+        </div>
+      </div>
     </div>
   );
 };

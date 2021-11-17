@@ -6,3 +6,5 @@ dist/
 coverage/
 .vscode/
 .parcel-cache/
+.parcel-cache/data.mdb
+.parcel-cache/lock.mdb

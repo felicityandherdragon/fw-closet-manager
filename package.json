@@ -11,7 +11,7 @@
     "start": "NODE_ENV=production npm run seed && node server && npm run build",
     "start:dev": "npm run dev & npm run start-server",
     "start:dev:logger": "LOGGING=true npm run start:dev",
-    "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
+    "start-server": "nodemon server -e html,js,scss --ignore src",
     "prepare": "husky install",
     "seed": "node script/seed.js"
   },
@@ -26,7 +26,10 @@
     "pg": "^8.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
     "react-router-dom": "^6.0.2",
+    "react-typewriter-effect": "^1.1.0",
+    "react-webcam": "^6.0.0",
     "sequelize": "^6.9.0"
   },
   "devDependencies": {
