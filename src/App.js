@@ -2,15 +2,16 @@ import React, { useState, StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Routing from './Routes';
+import Nav from './components/Nav';
 
 const App = () => {
   return (
     <Router>
-      <div className="p-0 m-0">
-        <header className="w-full mb-10 bg-gradient-to-b text-center p-7 from-purple-400 via-pink-500 to-red-500">
-          This is the header!
-        </header>
-        <Routing />
+      <div className="p-0 m-0 bg-white w-screen h-screen grid grid-cols-8">
+        <Nav />
+        <main className="col-span-7">
+          <Routing />
+        </main>
       </div>
     </Router>
   );
