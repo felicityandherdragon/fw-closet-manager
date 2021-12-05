@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // auth and api routes
 app.use('/api', require('./api'));
+app.use('/s3url', require('./s3'));
 app.get('/', (req, res) =>
   res.sendFile(path.join(__dirname, '..', 'dist/index.html'))
 );
