@@ -19,7 +19,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.44.0",
+    "@aws-sdk/s3-request-presigner": "^3.44.0",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "faker": "^5.5.3",
@@ -30,6 +33,7 @@
     "react-router-dom": "^6.0.2",
     "react-typewriter-effect": "^1.1.0",
     "react-webcam": "^6.0.0",
+    "react-webcam-barcode-scanner": "^0.0.2-rc2",
     "sequelize": "^6.9.0"
   },
   "devDependencies": {

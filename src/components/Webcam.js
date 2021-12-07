@@ -1,15 +1,34 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { TiCameraOutline } from 'react-icons/ti';
+import axios from 'axios';
 import Webcam from 'react-webcam';
+import AddNewForm from './AddNewForm';
 
 const WebcamComponent = ({ showCamera, setShowCamera }) => {
   const [imgSrc, setImgSrc] = useState(null);
 
   const webcamRef = useRef(null);
 
+  const uploadToS3 = async (file) => {
+    const url = (await axios.get('/s3url')).data;
+    const buf = new Buffer(file.replace(/^data:image\/\w+;base64,/, ''), 'base64');
+    try {
+      const res = await axios.put(url, buf, {
+        headers: {
+          'Content-Encoding': 'base64',
+          'Content-Type': 'image/jpeg',
+        },
+      });
+      const uploadedImgUrl = url.split('?')[0];
+      setImgSrc(uploadedImgUrl);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const capture = useCallback(() => {
-    const imgSrc = webcamRef.current.getScreenshot();
-    setImgSrc(imgSrc);
+    const localImg = webcamRef.current.getScreenshot();
+    uploadToS3(localImg);
   }, [webcamRef, setImgSrc]);
 
   const retake = useCallback(() => {
@@ -75,52 +94,7 @@ const WebcamComponent = ({ showCamera, setShowCamera }) => {
                       {imgSrc && (
                         <>
                           <img src={imgSrc} alt="newly taken" />
-                          <form method="POST" className="mt-5">
-                            <div className="shadow overflow-hidden sm:rounded-md">
-                              <div className="px-4 py-5 bg-white sm:p-6">
-                                <label
-                                  htmlFor="brand"
-                                  className="block text-sm font-medium text-gray-700 mt-2"
-                                >
-                                  Which brand?
-                                </label>
-                                <input
-                                  type="text"
-                                  name="brand"
-                                  id="brand"
-                                  className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                />
-                                <label
-                                  htmlFor="purchasedOn"
-                                  className="block text-sm font-medium text-gray-700 mt-2"
-                                >
-                                  When did you purchase this?
-                                </label>
-                                <input
-                                  type="date"
-                                  name="purchasedOn"
-                                  id="purchasedOn"
-                                  className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                />
-                                <label
-                                  htmlFor="season"
-                                  className="block text-sm font-medium text-gray-700 mt-2"
-                                >
-                                  Which season would you wear it for?
-                                </label>
-                                <select
-                                  id="season"
-                                  name="season"
-                                  className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                >
-                                  <option>Spring</option>
-                                  <option>Summer</option>
-                                  <option>Autumn</option>
-                                  <option>Winter</option>
-                                </select>
-                              </div>
-                            </div>
-                          </form>
+                          <AddNewForm />
                         </>
                       )}
                     </div>
