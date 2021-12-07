@@ -26,6 +26,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "faker": "^5.5.3",
+    "html5-qrcode": "^2.1.3",
     "pg": "^8.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -33,6 +34,7 @@
     "react-router-dom": "^6.0.2",
     "react-typewriter-effect": "^1.1.0",
     "react-webcam": "^6.0.0",
+    "react-webcam-barcode-scanner": "^0.0.2-rc2",
     "sequelize": "^6.9.0"
   },
   "devDependencies": {

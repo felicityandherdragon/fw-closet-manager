@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { TiCameraOutline, TiUploadOutline } from 'react-icons/ti';
 import WebcamComponent from './Webcam';
 import UploadBox from './UploadBox';
+import BarcodeReader from './BarcodeReader';
 
 const AddNew = () => {
   const [showCamera, setShowCamera] = useState(false);
   const [showUpload, setShowUpload] = useState(false);
+  const [showBarcode, setShowBarcode] = useState(false);
 
   const launchCamera = () => {
     setShowCamera(true);
@@ -13,6 +15,10 @@ const AddNew = () => {
 
   const launchUpload = () => {
     setShowUpload(true);
+  };
+
+  const launchBarcodeReader = () => {
+    setShowBarcode(true);
   };
 
   return (
@@ -27,6 +33,11 @@ const AddNew = () => {
               setShowCamera={setShowCamera}
             />
           )}
+          <p className="text-grey-dark mt-2 mb-2 text-sm">OR</p>
+          <button onClick={() => launchBarcodeReader()}>Read barcode</button>
+          {showBarcode && (
+            <BarcodeReader />
+          )}
         </div>
       </div>
       <div className="col-span-1 bg-blue grid grid-cols-4 grid-rows-6">
@@ -34,10 +45,7 @@ const AddNew = () => {
           <TiUploadOutline />
           <button onClick={() => launchUpload()}>upload a picture</button>
           {showUpload && (
-            <UploadBox
-              showUpload={showUpload}
-              setShowUpload={setShowUpload}
-            />
+            <UploadBox showUpload={showUpload} setShowUpload={setShowUpload} />
           )}
         </div>
       </div>

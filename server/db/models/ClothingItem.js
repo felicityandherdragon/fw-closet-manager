@@ -7,6 +7,9 @@ const ClothingItem = db.define('clothingitem', {
     defaultValue: UUIDV4,
     primaryKey: true,
   },
+  itemName: {
+    type: STRING,
+  },
   brand: {
     type: STRING,
   },
