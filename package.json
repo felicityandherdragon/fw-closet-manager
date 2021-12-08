@@ -34,6 +34,10 @@
     "react-typewriter-effect": "^1.1.0",
     "react-webcam": "^6.0.0",
     "react-webcam-barcode-scanner": "^0.0.2-rc2",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.1",
     "sequelize": "^6.9.0"
   },
   "devDependencies": {

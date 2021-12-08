@@ -32,17 +32,17 @@ async function seed() {
       brand: 'Sezane',
       purchasedOn: new Date('November 11').toString(),
       image:
-        'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/d9xfiiiwncyts0jlatuw.jpeg',
+        'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/595ea43e92ffef692591d04eb252d438',
       season: 'Winter',
       userId: felicity.id,
     }),
     ClothingItem.create({
-      color: 'blue',
-      category: 'shirt',
+      color: 'white',
+      category: 'sweater',
       brand: 'Sezane',
       purchasedOn: new Date('November 11').toString(),
       image:
-        'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/wetahbd1uhb4jpimhu3n.jpeg',
+        'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/32adbf07b903a341d6888b4c29371df8',
       season: 'Winter',
       userId: anna.id,
     }),

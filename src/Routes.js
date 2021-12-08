@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
-import AddNew from './components/AddNew';
+import AddNew from './components/AddNew/AddNew';
 import Home from './components/Home';
-import CurrentCloset from './components/CurrentCloset';
+import CurrentCloset from './components/CurrentCloset/CurrentCloset';
 import ClosetManager from './components/ClosetManager';
 
 const Routing = () => {

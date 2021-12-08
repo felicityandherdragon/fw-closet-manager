@@ -14,6 +14,26 @@ const UploadBox = ({ showUpload, setShowUpload }) => {
     setFile(inputRef.current.files[0]);
   };
 
+  const handleDragEnter = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.dataTransfer.dropEffect = 'copy';
+  };
+
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    let file = [...e.dataTransfer.files][0];
+    setFile(file);
+    console.log('drop sth!');
+  };
+
   const uploadToS3 = async () => {
     const url = (await axios.get('/s3url')).data;
     try {
@@ -29,6 +49,8 @@ const UploadBox = ({ showUpload, setShowUpload }) => {
       setGetError(true);
     }
   };
+
+  console.log(file);
 
   return (
     <div
@@ -103,7 +125,13 @@ const UploadBox = ({ showUpload, setShowUpload }) => {
                             strokeLinejoin="round"
                           />
                         </svg>
-                        <div className="flex text-sm text-grey-dark">
+                        <div
+                          className="flex text-sm text-grey-dark"
+                          onDragEnter={(e) => handleDragEnter(e)}
+                          onDragOver={(e) => handleDragOver(e)}
+                          // onDragEnd={e => handleDragEnd(e)}
+                          onDrop={(e) => handleDrop(e)}
+                        >
                           <label
                             htmlFor="file-upload"
                             className="relative cursor-pointer bg-white rounded-md font-medium text-blue-dark hover:text-blue focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue"
@@ -125,6 +153,11 @@ const UploadBox = ({ showUpload, setShowUpload }) => {
                         </p>
                       </div>
                     </div>
+                    {file && (
+                      <p className="text-xs text-grey-dark mt-3">
+                        File uploaded: {file.name}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
