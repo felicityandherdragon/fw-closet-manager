@@ -1,59 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getAllItems } from '../../store/getItems';
 
-const products = [
-  {
-    id: 1,
-    name: 'Earthen Bottle',
-    href: '#',
-    brand: 'AAA',
-    imageSrc:
-      'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg',
-    imageAlt:
-      'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
-  },
-  {
-    id: 2,
-    name: 'Nomad Tumbler',
-    href: '#',
-    brand: 'BBB',
-    imageSrc:
-      'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg',
-    imageAlt:
-      'Olive drab green insulated bottle with flared screw lid and flat top.',
-  },
-  {
-    id: 3,
-    name: 'Focus Paper Refill',
-    href: '#',
-    brand: 'CCC',
-    imageSrc:
-      'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg',
-    imageAlt:
-      'Person using a pen to cross a task off a productivity paper card.',
-  },
-  {
-    id: 4,
-    name: 'Machined Mechanical Pencil',
-    href: '#',
-    brand: 'DDD',
-    imageSrc:
-      'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg',
-    imageAlt:
-      'Hand holding black machined steel mechanical pencil with brass tip and top.',
-  },
-  // More products...
-];
+const CurrentCloset = (props) => {
 
-const CurrentCloset = () => {
+  useEffect(() => {
+    props.getAllItems();
+  }, []);
+
+  console.log(props);
   return (
     <div className="bg-white">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Products</h2>
 
         <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          {products.map((product) => (
+          {props.allItems.map((product) => (
             <a key={product.id} href={product.href} className="group">
-              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg shadow-md overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                 <img
                   src={product.imageSrc}
                   alt={product.imageAlt}
@@ -62,7 +26,7 @@ const CurrentCloset = () => {
               </div>
               <h3 className="mt-4 text-sm text-gray-700">{product.brand}</h3>
               <p className="mt-1 text-lg font-medium text-gray-900">
-                {product.name}
+                {product.itemName}
               </p>
             </a>
           ))}
@@ -72,4 +36,18 @@ const CurrentCloset = () => {
   );
 };
 
-export default CurrentCloset;
+const mapStateToProps = (state) => {
+  return {
+    allItems: state.allItems,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAllItems: () => {
+      dispatch(getAllItems());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CurrentCloset);

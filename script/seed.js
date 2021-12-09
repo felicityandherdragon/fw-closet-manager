@@ -30,8 +30,9 @@ async function seed() {
       color: 'burgundy',
       category: 'sweater',
       brand: 'Sezane',
+      itemName: 'A pretty burgendy sweater',
       purchasedOn: new Date('November 11').toString(),
-      image:
+      imageSrc:
         'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/595ea43e92ffef692591d04eb252d438',
       season: 'Winter',
       userId: felicity.id,
@@ -40,8 +41,9 @@ async function seed() {
       color: 'white',
       category: 'sweater',
       brand: 'Sezane',
+      itemName: 'A delicate white sweater',
       purchasedOn: new Date('November 11').toString(),
-      image:
+      imageSrc:
         'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/32adbf07b903a341d6888b4c29371df8',
       season: 'Winter',
       userId: anna.id,

@@ -25,7 +25,7 @@ const ClothingItem = db.define('clothingitem', {
     type: DATE,
     allowNull: false,
   },
-  image: {
+  imageSrc: {
     type: STRING,
     unique: true,
     allowNull: true,
