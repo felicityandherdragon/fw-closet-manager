@@ -94,7 +94,7 @@ const WebcamComponent = ({ showCamera, setShowCamera }) => {
                       {imgSrc && (
                         <>
                           <img src={imgSrc} alt="newly taken" />
-                          <AddNewForm />
+                          <AddNewForm imageSrc={imgSrc} />
                         </>
                       )}
                     </div>
@@ -114,12 +114,6 @@ const WebcamComponent = ({ showCamera, setShowCamera }) => {
               </button>
             ) : (
               <>
-                <button
-                  type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green text-base font-medium text-white hover:bg-green-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green sm:ml-3 sm:w-auto sm:text-sm"
-                >
-                  Submit item info
-                </button>
                 <button
                   type="button"
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green text-base font-medium text-white hover:bg-green-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green sm:ml-3 sm:w-auto sm:text-sm"

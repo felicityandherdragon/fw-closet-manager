@@ -32,6 +32,7 @@ const ClothingItem = db.define('clothingitem', {
   },
   season: {
     type: ENUM(['Spring', 'Summer', 'Autumn', 'Winter']),
+    allowNull: true,
   },
 });
 

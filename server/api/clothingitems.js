@@ -15,6 +15,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    console.log(req.body);
     const { itemName, brand, color, category, purchasedOn, imageSrc, season } =
       req.body;
     const newItem = await ClothingItem.create({

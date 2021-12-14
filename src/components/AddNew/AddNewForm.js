@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { addNewItem } from '../../store/addItems';
 
@@ -9,12 +10,29 @@ const AddNewForm = (props) => {
     color: '',
     category: '',
     purchasedOn: '',
-    imageSrc: '',
+    imageSrc: props.imageSrc,
     season: '',
   });
 
+  const makePrediction = async (imageSrc) => {
+    try {
+      const res = (
+        await axios.get('/predict', {
+          params: {
+            imageSrc: imageSrc,
+          },
+        })
+      ).data;
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const submitInfo = () => {
     console.log(item);
+    makePrediction(item.imageSrc);
+    props.addNewItem(item);
   };
 
   return (
@@ -40,7 +58,7 @@ const AddNewForm = (props) => {
               id="item-name"
               className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
               defaultValue={props.title ? props.title : undefined}
-              onChange={(e) => setItem({...item, itemName: e.target.value})}
+              onChange={(e) => setItem({ ...item, itemName: e.target.value })}
             />
             <label
               htmlFor="brand"
@@ -54,7 +72,7 @@ const AddNewForm = (props) => {
               id="brand"
               className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
               defaultValue={props.brand ? props.brand : undefined}
-              onChange={(e) => setItem({...item, brand: e.target.value})}
+              onChange={(e) => setItem({ ...item, brand: e.target.value })}
             />
             <label
               htmlFor="purchasedOn"
@@ -67,7 +85,9 @@ const AddNewForm = (props) => {
               name="purchasedOn"
               id="purchasedOn"
               className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-              onChange={(e) => setItem({...item, purchasedOn: e.target.value})}
+              onChange={(e) =>
+                setItem({ ...item, purchasedOn: e.target.value })
+              }
             />
             <label
               htmlFor="season"
@@ -79,7 +99,8 @@ const AddNewForm = (props) => {
               id="season"
               name="season"
               className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              onChange={(e) => setItem({...item, season: e.target.value})}
+              defaultValue={props.season ? props.season : 'Spring'}
+              onChange={(e) => setItem({ ...item, season: e.target.value })}
             >
               <option>Spring</option>
               <option>Summer</option>
@@ -92,7 +113,7 @@ const AddNewForm = (props) => {
       <div className="bg-grey-light px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
         <button
           type="button"
-          className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue text-base font-medium text-white hover:bg-blue-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue sm:ml-3 sm:w-auto sm:text-sm"
+          className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red text-base font-medium text-white hover:bg-red-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red sm:ml-3 sm:w-auto sm:text-sm"
           onClick={() => submitInfo()}
         >
           Submit item info

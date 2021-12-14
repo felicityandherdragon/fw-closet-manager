@@ -38,9 +38,15 @@ module.exports = {
       },
     },
     fontFamily: {
-      'display': ['"Righteous", cursive'],
-      'body': ['"Rubik", sans-serif'],
-    }
+      display: ['"Righteous", cursive'],
+      body: ['"Rubik", sans-serif'],
+    },
+    extend: {
+      backgroundImage: {
+        'addnew-texture':
+          'url("https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/memphis-pattern_1045-810.jpeg")',
+      },
+    },
   },
   variants: {
     extend: {},

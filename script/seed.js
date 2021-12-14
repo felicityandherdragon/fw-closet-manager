@@ -33,7 +33,7 @@ async function seed() {
       itemName: 'A pretty burgendy sweater',
       purchasedOn: new Date('November 11').toString(),
       imageSrc:
-        'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/595ea43e92ffef692591d04eb252d438',
+        'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/burgundy-sweater.jpeg',
       season: 'Winter',
       userId: felicity.id,
     }),
@@ -44,7 +44,7 @@ async function seed() {
       itemName: 'A delicate white sweater',
       purchasedOn: new Date('November 11').toString(),
       imageSrc:
-        'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/32adbf07b903a341d6888b4c29371df8',
+        'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/white-sweater.jpeg',
       season: 'Winter',
       userId: anna.id,
     }),
