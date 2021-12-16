@@ -27,8 +27,8 @@ async function seed() {
   //Seed clothing items
   const inventory = await Promise.all([
     ClothingItem.create({
-      color: 'burgundy',
-      category: 'sweater',
+      color: ['burgundy'],
+      category: ['sweater'],
       brand: 'Sezane',
       itemName: 'A pretty burgendy sweater',
       purchasedOn: new Date('November 11').toString(),
@@ -38,8 +38,8 @@ async function seed() {
       userId: felicity.id,
     }),
     ClothingItem.create({
-      color: 'white',
-      category: 'sweater',
+      color: ['white'],
+      category: ['sweater'],
       brand: 'Sezane',
       itemName: 'A delicate white sweater',
       purchasedOn: new Date('November 11').toString(),

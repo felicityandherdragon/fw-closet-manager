@@ -73,7 +73,7 @@ const UploadBox = ({ addNewItem, setShowUpload }) => {
           {imageUrl ? (
             <>
               <img src={imageUrl} alt="uploaded" />
-              <AddNewForm imageSrc={imageUrl} />
+              <AddNewForm imageSrc={imageUrl} setModal={setShowUpload} />
             </>
           ) : (
             <>

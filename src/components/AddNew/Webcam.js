@@ -94,7 +94,7 @@ const WebcamComponent = ({ showCamera, setShowCamera }) => {
                       {imgSrc && (
                         <>
                           <img src={imgSrc} alt="newly taken" />
-                          <AddNewForm imageSrc={imgSrc} />
+                          <AddNewForm imageSrc={imgSrc} setModal={setShowCamera} />
                         </>
                       )}
                     </div>

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { addNewItem } from '../../store/addItems';
@@ -7,8 +7,8 @@ const AddNewForm = (props) => {
   const [item, setItem] = useState({
     itemName: '',
     brand: '',
-    color: '',
-    category: '',
+    color: [],
+    category: [],
     purchasedOn: '',
     imageSrc: props.imageSrc,
     season: '',
@@ -16,23 +16,43 @@ const AddNewForm = (props) => {
 
   const makePrediction = async (imageSrc) => {
     try {
-      const res = (
-        await axios.get('/predict', {
+      const resColor = (
+        await axios.get('/predict/colors', {
           params: {
             imageSrc: imageSrc,
           },
         })
       ).data;
-      console.log(res);
+
+      const resCategory = (
+        await axios.get('/predict/category', {
+          params: {
+            imageSrc: imageSrc,
+          },
+        })
+      ).data;
+
+      const colors = resColor.map((each) => {
+        return each.w3c.name;
+      });
+
+      const category = resCategory.map((each) => {
+        return each.name;
+      });
+
+      setItem({ ...item, color: [...colors], category: [...category] });
     } catch (err) {
       console.log(err);
     }
   };
 
+  useEffect(() => {
+    makePrediction(props.imageSrc);
+  }, [props]);
+
   const submitInfo = () => {
-    console.log(item);
-    makePrediction(item.imageSrc);
     props.addNewItem(item);
+    props.setModal(false);
   };
 
   return (
