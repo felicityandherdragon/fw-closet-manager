@@ -2,7 +2,9 @@ import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 
-const DetailSlider = ({ open, setOpen }) => {
+const DetailSlider = ({ open, setOpen, currentItem }) => {
+  console.log(currentItem);
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
@@ -20,7 +22,7 @@ const DetailSlider = ({ open, setOpen }) => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            <Dialog.Overlay className="absolute inset-0 bg-grey-dark bg-opacity-75 transition-opacity" />
           </Transition.Child>
           <div className="fixed inset-y-0 right-0 pl-10 max-w-full flex">
             <Transition.Child
@@ -45,7 +47,7 @@ const DetailSlider = ({ open, setOpen }) => {
                   <div className="absolute top-0 left-0 -ml-8 pt-4 pr-2 flex sm:-ml-10 sm:pr-4">
                     <button
                       type="button"
-                      className="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                      className="rounded-md text-grey hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
                       onClick={() => setOpen(false)}
                     >
                       <span className="sr-only">Close panel</span>
@@ -55,18 +57,61 @@ const DetailSlider = ({ open, setOpen }) => {
                 </Transition.Child>
                 <div className="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll">
                   <div className="px-4 sm:px-6">
-                    <Dialog.Title className="text-lg font-medium text-gray-900">
-                      Panel title
+                    <Dialog.Title className="text-lg font-medium text-black">
+                      Item detail
                     </Dialog.Title>
                   </div>
                   <div className="mt-6 relative flex-1 px-4 sm:px-6">
                     {/* Replace with your content */}
-                    <div className="absolute inset-0 px-4 sm:px-6">
+                    {/* <div className="absolute inset-0 px-4 sm:px-6">
                       <div
-                        className="h-full border-2 border-dashed border-gray-200"
+                        className="h-full border-2 border-dashed border-grey-light"
                         aria-hidden="true"
                       />
+                    </div> */}
+                    <div className="w-full aspect-w-1 aspect-h-1 bg-grey-light rounded-lg shadow-md overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+                      <img
+                        src={currentItem.imageSrc}
+                        alt={currentItem.itemName}
+                        className="w-full h-full object-center object-cover group-hover:opacity-75"
+                      />
                     </div>
+                    <h3 className="mt-4 text-sm text-grey-dark">
+                      {currentItem.brand}
+                    </h3>
+                    <p className="mt-1 text-lg font-medium text-black">
+                      {currentItem.itemName}
+                    </p>
+                    <p className="mt-1 text-lg font-medium text-black">
+                      {currentItem.season}
+                    </p>
+                    <p className="mt-1 text-lg font-medium text-black">
+                      Colors
+                    </p>
+                    <div className="flex">
+                      {currentItem.color.map((color) => (
+                        <>
+                          <p className="mt-1 text-sm font-medium text-black rounded-lg border border-blue mx-1.5 p-2">
+                            {color}
+                          </p>
+                        </>
+                      ))}
+                    </div>
+                    <p className="mt-1 text-lg font-medium text-black">
+                      Category
+                    </p>
+                    <div className="flex">
+                      {currentItem.category.map((cat) => (
+                        <>
+                          <p className="mt-1 text-sm font-medium text-black rounded-lg border border-blue mx-1.5 p-2">
+                            {cat}
+                          </p>
+                        </>
+                      ))}
+                    </div>
+                    <p className="mt-1 text-lg font-medium text-black">
+                      Purchased on {currentItem.purchasedOn}
+                    </p>
                     {/* /End replace */}
                   </div>
                 </div>

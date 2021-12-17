@@ -55,6 +55,7 @@ const BarcodeItemInfo = (props) => {
                           brand={props.item.brand}
                           category={props.item.category}
                           title={props.item.title}
+                          imageSrc={props.item.images[0]}
                         />
                       </>
                     </div>

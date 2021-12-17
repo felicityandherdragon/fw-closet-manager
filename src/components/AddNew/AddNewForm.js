@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { addNewItem } from '../../store/addItems';
 
 const AddNewForm = (props) => {
+  console.log('this is the imagesrc im getting', props.imageSrc);
   const [item, setItem] = useState({
     itemName: '',
     brand: '',
@@ -49,6 +50,8 @@ const AddNewForm = (props) => {
   useEffect(() => {
     makePrediction(props.imageSrc);
   }, [props]);
+
+  console.log(item);
 
   const submitInfo = () => {
     props.addNewItem(item);
