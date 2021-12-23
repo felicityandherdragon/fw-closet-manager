@@ -18,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', require('./api'));
 app.use('/s3url', require('./s3'));
 app.use('/barcode', require('./barcode'));
+app.use('/predict', require('./predict'));
 app.get('/', (req, res) =>
   res.sendFile(path.join(__dirname, '..', 'dist/index.html'))
 );

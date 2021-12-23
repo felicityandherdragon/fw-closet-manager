@@ -12,3 +12,23 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
+
+router.post('/', async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const { itemName, brand, color, category, purchasedOn, imageSrc, season } =
+      req.body;
+    const newItem = await ClothingItem.create({
+      itemName,
+      brand,
+      color,
+      category,
+      purchasedOn,
+      imageSrc,
+      season,
+    });
+    res.send(newItem);
+  } catch (err) {
+    next(err);
+  }
+});

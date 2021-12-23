@@ -27,22 +27,24 @@ async function seed() {
   //Seed clothing items
   const inventory = await Promise.all([
     ClothingItem.create({
-      color: 'burgundy',
-      category: 'sweater',
+      color: ['burgundy'],
+      category: ['sweater'],
       brand: 'Sezane',
+      itemName: 'A pretty burgendy sweater',
       purchasedOn: new Date('November 11').toString(),
-      image:
-        'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/d9xfiiiwncyts0jlatuw.jpeg',
+      imageSrc:
+        'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/burgundy-sweater.jpeg',
       season: 'Winter',
       userId: felicity.id,
     }),
     ClothingItem.create({
-      color: 'blue',
-      category: 'shirt',
+      color: ['white'],
+      category: ['sweater'],
       brand: 'Sezane',
+      itemName: 'A delicate white sweater',
       purchasedOn: new Date('November 11').toString(),
-      image:
-        'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/wetahbd1uhb4jpimhu3n.jpeg',
+      imageSrc:
+        'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/white-sweater.jpeg',
       season: 'Winter',
       userId: anna.id,
     }),

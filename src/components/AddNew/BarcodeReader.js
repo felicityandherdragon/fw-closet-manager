@@ -15,7 +15,6 @@ const BarcodeReader = () => {
         },
       })
     ).data;
-    console.log('res', res.items);
     setItem(res.items[0]);
   };
 

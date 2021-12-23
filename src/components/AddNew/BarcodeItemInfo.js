@@ -55,6 +55,8 @@ const BarcodeItemInfo = (props) => {
                           brand={props.item.brand}
                           category={props.item.category}
                           title={props.item.title}
+                          imageSrc={props.item.images[0]}
+                          setItem={props.setItem}
                         />
                       </>
                     </div>
@@ -62,21 +64,6 @@ const BarcodeItemInfo = (props) => {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-            <button
-              type="button"
-              className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green text-base font-medium text-white hover:bg-green-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green sm:ml-3 sm:w-auto sm:text-sm"
-            >
-              Submit item info
-            </button>
-            <button
-              type="button"
-              className="mt-3 w-full inline-flex justify-center rounded-md border border-grey-light shadow-sm px-4 py-2 bg-white text-base font-medium text-grey-dark hover:bg-grey-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-grey-dark sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-              onClick={() => props.setItem(null)}
-            >
-              Cancel
-            </button>
           </div>
         </div>
       </div>
