@@ -3,7 +3,7 @@ import AddNew from './components/AddNew/AddNew';
 import Home from './components/Home';
 import CurrentCloset from './components/CurrentCloset/CurrentCloset';
 import ClosetManager from './components/ClosetManager';
-import Login from './components/Authentication/Login';
+import Login from './components/User/LoginForm';
 
 const Routing = () => {
   return (
