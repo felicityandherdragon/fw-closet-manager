@@ -5,6 +5,17 @@ import { XIcon } from '@heroicons/react/outline';
 const DetailSlider = ({ open, setOpen, currentItem }) => {
   console.log(currentItem);
 
+  const dateFormat = (date) => {
+    const options = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    };
+    const event = new Date(date);
+    return event.toLocaleDateString(undefined, options);
+  };
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
@@ -62,13 +73,6 @@ const DetailSlider = ({ open, setOpen, currentItem }) => {
                     </Dialog.Title>
                   </div>
                   <div className="mt-6 relative flex-1 px-4 sm:px-6">
-                    {/* Replace with your content */}
-                    {/* <div className="absolute inset-0 px-4 sm:px-6">
-                      <div
-                        className="h-full border-2 border-dashed border-grey-light"
-                        aria-hidden="true"
-                      />
-                    </div> */}
                     <div className="w-full aspect-w-1 aspect-h-1 bg-grey-light rounded-lg shadow-md overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                       <img
                         src={currentItem.imageSrc}
@@ -110,7 +114,10 @@ const DetailSlider = ({ open, setOpen, currentItem }) => {
                       ))}
                     </div>
                     <p className="mt-1 text-lg font-medium text-black">
-                      Purchased on {currentItem.purchasedOn}
+                      Purchased on
+                    </p>
+                    <p className="mt-1 text-sm font-medium text-black rounded-lg border border-blue mx-1.5 p-2">
+                      {dateFormat(currentItem.purchasedOn)}
                     </p>
                     {/* /End replace */}
                   </div>

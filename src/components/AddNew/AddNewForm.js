@@ -51,11 +51,12 @@ const AddNewForm = (props) => {
     makePrediction(props.imageSrc);
   }, [props]);
 
-  console.log(item);
-
   const submitInfo = () => {
     props.addNewItem(item);
     props.setModal(false);
+    if (props.setItem) {
+      setItem(null);
+    }
   };
 
   return (
