@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 import { LockClosedIcon } from '@heroicons/react/solid';
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyActMTlL1ERQJW1EA4jPwkI9uVZwldH1ro',
+  apiKey: process.env.FIREBASE_APIKEY,
   authDomain: 'closet-manager.firebaseapp.com',
   projectId: 'closet-manager',
   storageBucket: 'closet-manager.appspot.com',
-  messagingSenderId: '995191862586',
-  appId: '1:995191862586:web:a838af0ad4450a91414c03',
+  messagingSenderId: process.env.FIREBASE_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
   measurementId: 'G-4FKR9W1FV4',
 };
 
 const Login = () => {
   const [input, setInput] = useState({ email: '', password: '' });
-
-  console.log(input);
 
   initializeApp(firebaseConfig);
 
@@ -33,6 +36,30 @@ const Login = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode);
+        console.log(errorMessage);
+      });
+  };
+
+  const googleSignIn = () => {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
         console.log(errorMessage);
       });
   };
@@ -87,7 +114,7 @@ const Login = () => {
             <div>
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue hover:bg-blue-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue hover:bg-blue-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue"
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <LockClosedIcon
@@ -99,6 +126,22 @@ const Login = () => {
               </button>
             </div>
           </form>
+          <div>
+            <p>OR</p>
+            <button
+              type="submit"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red hover:bg-red-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red"
+              onClick={() => googleSignIn()}
+            >
+              <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+                <LockClosedIcon
+                  className="h-5 w-5 text-red-light group-hover:text-grey-dark"
+                  aria-hidden="true"
+                />
+              </span>
+              Sign in with Google
+            </button>
+          </div>
         </div>
       </div>
     </>
