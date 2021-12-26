@@ -3,7 +3,7 @@ import { LockClosedIcon } from '@heroicons/react/solid';
 import { initializeApp } from 'firebase/app';
 import {
   getAuth,
-  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
 } from 'firebase/auth';
@@ -19,7 +19,7 @@ const firebaseConfig = {
   measurementId: 'G-4FKR9W1FV4',
 };
 
-const Login = () => {
+const Signup = () => {
   const [input, setInput] = useState({ email: '', password: '' });
   const [message, setMessage] = useState('');
   const [showBanner, setShowBanner] = useState(false);
@@ -27,14 +27,14 @@ const Login = () => {
 
   initializeApp(firebaseConfig);
 
-  const signIn = (e) => {
-    e.preventDefault();
+  const register = (e) => {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, input.email, input.password)
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth, input.email, input.password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
-        setMessage(`Welcome back, ${user.email}!`);
+        setMessage(`Thank you for signing up! Account created with ${user.email}`);
         setLoggedIn(true);
         setShowBanner(true);
       })
@@ -48,28 +48,23 @@ const Login = () => {
       });
   };
 
-  const googleSignIn = () => {
+  const googleSignUp = () => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-        // The signed-in user info.
         const user = result.user;
         console.log(user);
-        setMessage(`Welcome back, ${user.email}!`);
+        setMessage(`Welcome, ${user.email}!`);
         setLoggedIn(true);
         setShowBanner(true);
       })
       .catch((error) => {
-        // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        // The email of the user's account used.
         const email = error.email;
-        // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
         console.log(errorMessage);
         setMessage(errorMessage);
@@ -81,16 +76,20 @@ const Login = () => {
   return (
     <>
       {showBanner && (
-        <BannerNotification msg={message} setShowBanner={setShowBanner} loggedIn={loggedIn} />
+        <BannerNotification
+          msg={message}
+          setShowBanner={setShowBanner}
+          loggedIn={loggedIn}
+        />
       )}
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-black">
-              Sign in to your account
+              Sign up
             </h2>
           </div>
-          <form className="mt-8 space-y-6" onSubmit={(e) => signIn(e)}>
+          <form className="mt-8 space-y-6" onSubmit={(e) => register(e)}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
@@ -139,7 +138,7 @@ const Login = () => {
                     aria-hidden="true"
                   />
                 </span>
-                Sign in
+                Create account
               </button>
             </div>
           </form>
@@ -148,7 +147,7 @@ const Login = () => {
             <button
               type="submit"
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red hover:bg-red-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red"
-              onClick={() => googleSignIn()}
+              onClick={() => googleSignUp()}
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 <LockClosedIcon
@@ -156,7 +155,7 @@ const Login = () => {
                   aria-hidden="true"
                 />
               </span>
-              Sign in with Google
+              Sign up with Google
             </button>
           </div>
         </div>
@@ -165,4 +164,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

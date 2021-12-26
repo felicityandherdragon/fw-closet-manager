@@ -12,3 +12,12 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
+
+router.get('/byemail', async (req, res, next) => {
+  try {
+    const results = await User.findOne({ where: { email: req.body.email } });
+    res.send(results);
+  } catch (err) {
+    next(err);
+  }
+});
