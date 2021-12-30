@@ -93,9 +93,9 @@ const DetailSlider = ({ open, setOpen, currentItem }) => {
                       Colors
                     </p>
                     <div className="flex">
-                      {currentItem.color.map((color) => (
+                      {currentItem.color.map((color, idx) => (
                         <>
-                          <p className="mt-1 text-sm font-medium text-black rounded-lg border border-blue mx-1.5 p-2">
+                          <p className="mt-1 text-sm font-medium text-black rounded-lg border border-blue mx-1.5 p-2" key={idx}>
                             {color}
                           </p>
                         </>
@@ -105,9 +105,9 @@ const DetailSlider = ({ open, setOpen, currentItem }) => {
                       Category
                     </p>
                     <div className="flex">
-                      {currentItem.category.map((cat) => (
+                      {currentItem.category.map((cat,idx) => (
                         <>
-                          <p className="mt-1 text-sm font-medium text-black rounded-lg border border-blue mx-1.5 p-2">
+                          <p className="mt-1 text-sm font-medium text-black rounded-lg border border-blue mx-1.5 p-2" key={idx}>
                             {cat}
                           </p>
                         </>

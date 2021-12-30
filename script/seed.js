@@ -19,10 +19,14 @@ async function seed() {
     User.create({
       email: 'anna@mail.com',
     }),
+    User.create({
+      email: 'felicityandherdragon@gmail.com',
+    }),
   ]);
 
   const felicity = users[0];
   const anna = users[1];
+  const tester = users[2];
 
   //Seed clothing items
   const inventory = await Promise.all([
@@ -47,6 +51,17 @@ async function seed() {
         'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/white-sweater.jpeg',
       season: 'Winter',
       userId: anna.id,
+    }),
+    ClothingItem.create({
+      color: ['khaki'],
+      category: ['coat'],
+      brand: 'Sezane',
+      itemName: 'Scott Trench Coat',
+      purchasedOn: new Date('December 24').toString(),
+      imageSrc:
+        'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/khaki-trench-coat.jpeg',
+      season: 'Autumn',
+      userId: tester.id,
     }),
   ]);
 }

@@ -13,10 +13,23 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const results = await ClothingItem.findAll({
+      where: {
+        userId: req.params.userId,
+      },
+    });
+    res.send(results);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post('/', async (req, res, next) => {
   try {
     console.log(req.body);
-    const { itemName, brand, color, category, purchasedOn, imageSrc, season } =
+    const { itemName, brand, color, category, purchasedOn, imageSrc, season, userId } =
       req.body;
     const newItem = await ClothingItem.create({
       itemName,
@@ -26,6 +39,7 @@ router.post('/', async (req, res, next) => {
       purchasedOn,
       imageSrc,
       season,
+      userId
     });
     res.send(newItem);
   } catch (err) {

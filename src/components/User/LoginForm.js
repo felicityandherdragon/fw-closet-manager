@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LockClosedIcon } from '@heroicons/react/solid';
 import { initializeApp } from 'firebase/app';
+import { connect } from 'react-redux';
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -8,6 +9,7 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 import BannerNotification from '../BannerNotification';
+import { setCurrentUser } from '../../store/setUser';
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_APIKEY,
@@ -19,7 +21,7 @@ const firebaseConfig = {
   measurementId: 'G-4FKR9W1FV4',
 };
 
-const Login = () => {
+const Login = (props) => {
   const [input, setInput] = useState({ email: '', password: '' });
   const [message, setMessage] = useState('');
   const [showBanner, setShowBanner] = useState(false);
@@ -34,6 +36,7 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
+        // console.log(props.currentUser);
         setMessage(`Welcome back, ${user.email}!`);
         setLoggedIn(true);
         setShowBanner(true);
@@ -59,6 +62,7 @@ const Login = () => {
         // The signed-in user info.
         const user = result.user;
         console.log(user);
+        props.setCurrentUser(user.email);
         setMessage(`Welcome back, ${user.email}!`);
         setLoggedIn(true);
         setShowBanner(true);
@@ -78,10 +82,16 @@ const Login = () => {
       });
   };
 
+  console.log(props.currentUser);
+
   return (
     <>
       {showBanner && (
-        <BannerNotification msg={message} setShowBanner={setShowBanner} loggedIn={loggedIn} />
+        <BannerNotification
+          msg={message}
+          setShowBanner={setShowBanner}
+          loggedIn={loggedIn}
+        />
       )}
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
@@ -165,4 +175,18 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCurrentUser: (email) => {
+      dispatch(setCurrentUser(email));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -15,7 +15,9 @@ router.get('/', async (req, res, next) => {
 
 router.get('/byemail', async (req, res, next) => {
   try {
-    const results = await User.findOne({ where: { email: req.body.email } });
+    console.log('on server side!');
+    const results = await User.findOne({ where: { email: req.query.email } });
+    console.log(results);
     res.send(results);
   } catch (err) {
     next(err);

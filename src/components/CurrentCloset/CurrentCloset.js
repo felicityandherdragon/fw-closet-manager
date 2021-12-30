@@ -13,8 +13,8 @@ const CurrentCloset = (props) => {
   };
 
   useEffect(() => {
-    props.getAllItems();
-  }, []);
+    props.getAllItems(props.currentUser.id);
+  }, [props.currentUser, props.newItem]);
 
   return (
     <div className="bg-white">
@@ -22,26 +22,30 @@ const CurrentCloset = (props) => {
         <h2 className="sr-only">All items</h2>
 
         <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          {props.allItems.map((item) => (
-            <a
-              key={item.id}
-              href={item.href}
-              className="group"
-              onClick={() => openSlider(item)}
-            >
-              <div className="w-full aspect-w-1 aspect-h-1 bg-grey-light rounded-lg shadow-md overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-                <img
-                  src={item.imageSrc}
-                  alt={item.imageAlt}
-                  className="w-full h-full object-center object-cover group-hover:opacity-75"
-                />
-              </div>
-              <h3 className="mt-4 text-sm text-black">{item.brand}</h3>
-              <p className="mt-1 text-lg font-medium text-black">
-                {item.itemName}
-              </p>
-            </a>
-          ))}
+          {props.allItems.length > 0 ? (
+            props.allItems.map((item) => (
+              <a
+                key={item.id}
+                href={item.href}
+                className="group"
+                onClick={() => openSlider(item)}
+              >
+                <div className="w-full aspect-w-1 aspect-h-1 bg-grey-light rounded-lg shadow-md overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+                  <img
+                    src={item.imageSrc}
+                    alt={item.imageAlt}
+                    className="w-full h-full object-center object-cover group-hover:opacity-75"
+                  />
+                </div>
+                <h3 className="mt-4 text-sm text-black">{item.brand}</h3>
+                <p className="mt-1 text-lg font-medium text-black">
+                  {item.itemName}
+                </p>
+              </a>
+            ))
+          ) : (
+            <p>No items!</p>
+          )}
         </div>
       </div>
       {open && (
@@ -54,13 +58,15 @@ const CurrentCloset = (props) => {
 const mapStateToProps = (state) => {
   return {
     allItems: state.allItems,
+    currentUser: state.currentUser,
+    newItem: state.newItem
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllItems: () => {
-      dispatch(getAllItems());
+    getAllItems: (userId) => {
+      dispatch(getAllItems(userId));
     },
   };
 };
