@@ -94,29 +94,31 @@ const DetailSlider = ({ open, setOpen, currentItem }) => {
                     </p>
                     <div className="flex">
                       {currentItem.color.map((color, idx) => (
-                        <>
-                          <p className="mt-1 text-sm font-medium text-black rounded-lg border border-blue mx-1.5 p-2" key={idx}>
-                            {color}
-                          </p>
-                        </>
+                        <p
+                          className="mt-1 text-sm font-medium text-green-dark rounded-lg bg-green-light mx-1.5 p-2"
+                          key={idx}
+                        >
+                          {color}
+                        </p>
                       ))}
                     </div>
                     <p className="mt-1 text-lg font-medium text-black">
                       Category
                     </p>
                     <div className="flex">
-                      {currentItem.category.map((cat,idx) => (
-                        <>
-                          <p className="mt-1 text-sm font-medium text-black rounded-lg border border-blue mx-1.5 p-2" key={idx}>
-                            {cat}
-                          </p>
-                        </>
+                      {currentItem.category.map((cat, idx) => (
+                        <p
+                          className="mt-1 text-sm font-medium rounded-lg bg-blue-light mx-1.5 p-2 text-blue-dark"
+                          key={idx}
+                        >
+                          {cat}
+                        </p>
                       ))}
                     </div>
                     <p className="mt-1 text-lg font-medium text-black">
                       Purchased on
                     </p>
-                    <p className="mt-1 text-sm font-medium text-black rounded-lg border border-blue mx-1.5 p-2">
+                    <p className="mt-1 text-sm font-medium text-pink-dark rounded-lg bg-pink-light mx-1.5 p-2">
                       {dateFormat(currentItem.purchasedOn)}
                     </p>
                     {/* /End replace */}

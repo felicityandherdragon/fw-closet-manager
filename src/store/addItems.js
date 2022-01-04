@@ -1,10 +1,12 @@
 import axios from 'axios';
 const ADD_NEW_ITEM = 'ADD_NEW_ITEM';
 
-export const addNewItem = (item, userId) => {
+export const addNewItem = (item, sessionId) => {
   return async (dispatch) => {
     try {
-      const newItem = (await axios.post('/api/clothingitems', item)).data;
+      const user = (await axios.get(`/api/users/${sessionId}`)).data;
+      const itemToUse = { ...item, userId: user.id };
+      const newItem = (await axios.post('/api/clothingitems', itemToUse)).data;
       dispatch(_addNewItem(newItem));
     } catch (err) {
       console.log(err);

@@ -13,7 +13,6 @@ const AddNewForm = (props) => {
     purchasedOn: '',
     imageSrc: props.imageSrc,
     season: '',
-    userId: '',
   });
   const [err, setErr] = useState('');
 
@@ -55,9 +54,14 @@ const AddNewForm = (props) => {
   }, [props]);
 
   const submitInfo = () => {
-    if (props.currentUser) {
-      props.addNewItem({ ...item, userId: props.currentUser.id });
-      props.setModal(false);
+    const sessionId = window.localStorage.getItem('sessionId')
+    if (sessionId) {
+      props.addNewItem(item, sessionId);
+      if (props.setModal) {
+        props.setModal(false);
+      } else if (props.setItem) {
+        props.setItem(false);
+      }
       setItem(null);
     } else {
       setErr('Please first log in');
@@ -161,8 +165,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addNewItem: (item) => {
-      dispatch(addNewItem(item));
+    addNewItem: (item, sessionId) => {
+      dispatch(addNewItem(item, sessionId));
     },
   };
 };

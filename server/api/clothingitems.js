@@ -2,6 +2,7 @@ const router = require('express').Router();
 const {
   models: { ClothingItem },
 } = require('../db');
+const User = require('../db/models/User');
 module.exports = router;
 
 router.get('/', async (req, res, next) => {
@@ -13,11 +14,16 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:userId', async (req, res, next) => {
+router.get('/:sessionId', async (req, res, next) => {
   try {
+    const user = await User.findOne({
+      where: {
+        currentSession: req.params.sessionId,
+      },
+    });
     const results = await ClothingItem.findAll({
       where: {
-        userId: req.params.userId,
+        userId: user.id,
       },
     });
     res.send(results);
@@ -29,8 +35,16 @@ router.get('/:userId', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     console.log(req.body);
-    const { itemName, brand, color, category, purchasedOn, imageSrc, season, userId } =
-      req.body;
+    const {
+      itemName,
+      brand,
+      color,
+      category,
+      purchasedOn,
+      imageSrc,
+      season,
+      userId,
+    } = req.body;
     const newItem = await ClothingItem.create({
       itemName,
       brand,
@@ -39,7 +53,7 @@ router.post('/', async (req, res, next) => {
       purchasedOn,
       imageSrc,
       season,
-      userId
+      userId,
     });
     res.send(newItem);
   } catch (err) {

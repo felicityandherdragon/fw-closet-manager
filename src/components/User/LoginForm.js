@@ -37,6 +37,7 @@ const Login = (props) => {
         const user = userCredential.user;
         console.log(user);
         // console.log(props.currentUser);
+        props.setCurrentUser(user.email);
         setMessage(`Welcome back, ${user.email}!`);
         setLoggedIn(true);
         setShowBanner(true);

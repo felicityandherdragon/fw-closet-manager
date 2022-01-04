@@ -9,6 +9,10 @@ export const setCurrentUser = (email) => {
           email: email,
         },
       })).data;
+      window.localStorage.setItem(
+        'sessionId',
+        user.currentSession
+      );
       dispatch(_setCurrentUser(user));
     } catch (err) {
       console.log(err);

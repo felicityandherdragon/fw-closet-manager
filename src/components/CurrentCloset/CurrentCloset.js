@@ -13,7 +13,7 @@ const CurrentCloset = (props) => {
   };
 
   useEffect(() => {
-    props.getAllItems(props.currentUser.id);
+    props.getAllItems(window.localStorage.getItem('sessionId'));
   }, [props.currentUser, props.newItem]);
 
   return (
