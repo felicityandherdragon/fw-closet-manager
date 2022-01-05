@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { TiUpload } from 'react-icons/ti';
 import axios from 'axios';
 import AddNewForm from './AddNewForm';
 
-const UploadBox = ({ addNewItem, setShowUpload }) => {
+const UploadBox = ({ setShowUpload }) => {
   const inputRef = useRef();
   const [file, setFile] = useState(null);
   const [imageUrl, setImageUrl] = useState('');
@@ -30,7 +30,6 @@ const UploadBox = ({ addNewItem, setShowUpload }) => {
     e.stopPropagation();
     let file = [...e.dataTransfer.files][0];
     setFile(file);
-    console.log('drop sth!');
   };
 
   const uploadToS3 = async () => {

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addNewItem } from '../../store/addItems';
 
 const AddNewForm = (props) => {
-  console.log('this is the imagesrc im getting', props.imageSrc);
+  // console.log(props.currentUser);
   const [item, setItem] = useState({
     itemName: '',
     brand: '',
@@ -14,7 +14,9 @@ const AddNewForm = (props) => {
     imageSrc: props.imageSrc,
     season: '',
   });
+  const [err, setErr] = useState('');
 
+  console.log(item);
   const makePrediction = async (imageSrc) => {
     try {
       const resColor = (
@@ -52,10 +54,17 @@ const AddNewForm = (props) => {
   }, [props]);
 
   const submitInfo = () => {
-    props.addNewItem(item);
-    props.setModal(false);
-    if (props.setItem) {
+    const sessionId = window.localStorage.getItem('sessionId')
+    if (sessionId) {
+      props.addNewItem(item, sessionId);
+      if (props.setModal) {
+        props.setModal(false);
+      } else if (props.setItem) {
+        props.setItem(false);
+      }
       setItem(null);
+    } else {
+      setErr('Please first log in');
     }
   };
 
@@ -142,17 +151,24 @@ const AddNewForm = (props) => {
         >
           Submit item info
         </button>
+        {err && <p className="text-red">{err}</p>}
       </div>
     </>
   );
 };
 
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    addNewItem: (item) => {
-      dispatch(addNewItem(item));
+    addNewItem: (item, sessionId) => {
+      dispatch(addNewItem(item, sessionId));
     },
   };
 };
 
-export default connect(null, mapDispatchToProps)(AddNewForm);
+export default connect(mapStateToProps, mapDispatchToProps)(AddNewForm);

@@ -12,9 +12,9 @@ module.exports = {
         dark: '#41606d',
       },
       pink: {
-        light: '#ff7ce5',
+        light: '#efc9e8',
         DEFAULT: '#e09dd2',
-        dark: '#ff16d1',
+        dark: '#db5ca8',
       },
       yellow: {
         dark: '#b08d51',
@@ -45,6 +45,10 @@ module.exports = {
       backgroundImage: {
         'addnew-texture':
           'url("https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/memphis-pattern_1045-810.jpeg")',
+      },
+      spacing: {
+        '128': '32rem',
+        '256': '64rem',
       },
     },
   },

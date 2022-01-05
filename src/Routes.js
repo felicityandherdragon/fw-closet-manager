@@ -2,8 +2,9 @@ import { Routes, Route } from 'react-router-dom';
 import AddNew from './components/AddNew/AddNew';
 import Home from './components/Home';
 import CurrentCloset from './components/CurrentCloset/CurrentCloset';
-import ClosetManager from './components/ClosetManager';
+import ClosetManager from './components/ClosetManager/ClosetManager';
 import Login from './components/User/LoginForm';
+import Signup from './components/User/SignupForm';
 
 const Routing = () => {
   return (
@@ -13,6 +14,7 @@ const Routing = () => {
       <Route exact path="/current-closet" element={<CurrentCloset />} />
       <Route exact path="/manager" element={<ClosetManager />} />
       <Route exact path="/login" element={<Login />} />
+      <Route exact path="/signup" element={<Signup />} />
     </Routes>
   );
 };
