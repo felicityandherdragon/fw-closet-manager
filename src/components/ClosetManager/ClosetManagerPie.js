@@ -1,11 +1,14 @@
 import React from 'react';
 import { ResponsivePie } from '@nivo/pie';
-import { animated } from '@react-spring/web'
+import { animated } from '@react-spring/web';
 
-const MyResponsivePie = ({ data }) => {
+const MyResponsivePie = ({ data, colorTheme }) => {
+  const checkMore = (e) => {
+    console.log(e);
+  };
+
   return (
-    <div className="w-128 h-128">
-      <p>Is this loading?</p>
+    <div className="w-192 h-192">
       <ResponsivePie
         data={data}
         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
@@ -13,7 +16,7 @@ const MyResponsivePie = ({ data }) => {
         padAngle={0.7}
         cornerRadius={3}
         activeOuterRadiusOffset={8}
-        colors={{ scheme: 'pink_yellowGreen' }}
+        colors={colorTheme}
         // colors={{datum: 'data.color'}}
         borderColor={{ from: 'color', modifiers: [['darker', 0.2]] }}
         arcLinkLabelsSkipAngle={10}
@@ -22,6 +25,7 @@ const MyResponsivePie = ({ data }) => {
         arcLinkLabelsColor={{ from: 'color' }}
         arcLabelsSkipAngle={10}
         arcLabelsTextColor={{ from: 'color', modifiers: [['darker', 2]] }}
+        onClick={(e) => checkMore(e)}
         arcLabelsComponent={({ datum, label, style }) => (
           <animated.g
             transform={style.transform}
