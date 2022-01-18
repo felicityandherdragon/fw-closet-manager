@@ -35,8 +35,14 @@ const AddNewForm = (props) => {
         })
       ).data;
 
+      console.log(resColor);
+      console.log(resCategory);
+
       const colors = resColor.map((each) => {
-        return each.w3c.name;
+        return {
+          colorName: each.w3c.name,
+          colorValue: each.raw_hex,
+        };
       });
 
       const category = resCategory.map((each) => {
@@ -54,7 +60,7 @@ const AddNewForm = (props) => {
   }, [props]);
 
   const submitInfo = () => {
-    const sessionId = window.localStorage.getItem('sessionId')
+    const sessionId = window.localStorage.getItem('sessionId');
     if (sessionId) {
       props.addNewItem(item, sessionId);
       if (props.setModal) {

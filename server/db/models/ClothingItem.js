@@ -1,4 +1,4 @@
-const { UUID, UUIDV4, STRING, DATE, ENUM, ARRAY } = require('sequelize');
+const { UUID, UUIDV4, STRING, DATE, ENUM, ARRAY, JSON } = require('sequelize');
 const db = require('../db');
 
 const ClothingItem = db.define('clothingitem', {
@@ -14,7 +14,7 @@ const ClothingItem = db.define('clothingitem', {
     type: STRING,
   },
   color: {
-    type: ARRAY(STRING),
+    type: ARRAY(JSON),
     allowNull: true,
   },
   category: {

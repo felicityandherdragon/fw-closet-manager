@@ -5,6 +5,8 @@ import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import MyResponsivePie from './ClosetManagerPie';
 import { getAllItems } from '../../store/getItems';
+import { getAllColorsbyUser } from '../../store/getColors';
+import { getItemsbyColor } from '../../store/getItemsbyColor';
 import useAllColors from '../../../hooks/useAllColors';
 
 const data = [
@@ -43,6 +45,8 @@ const data = [
 const ClosetManager = (props) => {
   const [currentView, setCurrentView] = useState('byColor');
   const [allColors] = useAllColors(props);
+
+  console.log(allColors);
 
   return (
     <div className="grid grid-cols-4 grid-rows-6 h-screen">
@@ -141,6 +145,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getAllItems: (sessionId) => {
       dispatch(getAllItems(sessionId));
+    },
+    getAllColorsbyUser: (sessionId) => {
+      dispatch(getAllColorsbyUser(sessionId));
+    },
+    getItemsbyColor: (colorId) => {
+      dispatch(getItemsbyColor(colorId));
     },
   };
 };

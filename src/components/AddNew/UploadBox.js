@@ -10,7 +10,6 @@ const UploadBox = ({ setShowUpload }) => {
   const [getError, setGetError] = useState(false);
 
   const addNewFile = async () => {
-    // console.log(inputRef.current.files[0]);
     setFile(inputRef.current.files[0]);
   };
 
@@ -108,7 +107,13 @@ const UploadBox = ({ setShowUpload }) => {
                       )}
                     </div>
                     <div>
-                      <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-blue border-dashed rounded-md">
+                      <div
+                        className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-blue border-dashed rounded-md"
+                        onDragEnter={(e) => handleDragEnter(e)}
+                        onDragOver={(e) => handleDragOver(e)}
+                        // onDragEnd={e => handleDragEnd(e)}
+                        onDrop={(e) => handleDrop(e)}
+                      >
                         <div className="space-y-1 text-center">
                           <svg
                             className="mx-auto h-12 w-12 text-grey"
@@ -126,10 +131,10 @@ const UploadBox = ({ setShowUpload }) => {
                           </svg>
                           <div
                             className="flex text-sm text-grey-dark"
-                            onDragEnter={(e) => handleDragEnter(e)}
-                            onDragOver={(e) => handleDragOver(e)}
-                            // onDragEnd={e => handleDragEnd(e)}
-                            onDrop={(e) => handleDrop(e)}
+                            // onDragEnter={(e) => handleDragEnter(e)}
+                            // onDragOver={(e) => handleDragOver(e)}
+                            // // onDragEnd={e => handleDragEnd(e)}
+                            // onDrop={(e) => handleDrop(e)}
                           >
                             <label
                               htmlFor="file-upload"
