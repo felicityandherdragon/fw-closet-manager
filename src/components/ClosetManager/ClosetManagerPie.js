@@ -1,10 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { ResponsivePie } from '@nivo/pie';
 import { animated } from '@react-spring/web';
+import { getItemsbyColor } from '../../store/getItemsbyColor';
 
-const MyResponsivePie = ({ data, colorTheme }) => {
+const MyResponsivePie = ({ data, colorTheme, getItemsbyColor}) => {
   const checkMore = (e) => {
-    console.log(e);
+    console.log(e.data.colorId);
+    getItemsbyColor(e.data.colorId);
   };
 
   return (
@@ -16,8 +19,8 @@ const MyResponsivePie = ({ data, colorTheme }) => {
         padAngle={0.7}
         cornerRadius={3}
         activeOuterRadiusOffset={8}
-        colors={colorTheme}
-        // colors={{datum: 'data.color'}}
+        // colors={colorTheme}
+        colors={{ datum: 'data.color' }}
         borderColor={{ from: 'color', modifiers: [['darker', 0.2]] }}
         arcLinkLabelsSkipAngle={10}
         arcLinkLabelsTextColor="#333333"
@@ -74,43 +77,43 @@ const MyResponsivePie = ({ data, colorTheme }) => {
         fill={[
           {
             match: {
-              id: 'ruby',
+              id: 'Black',
             },
             id: 'dots',
           },
           {
             match: {
-              id: 'c',
+              id: 'khaki',
             },
             id: 'dots',
           },
           {
             match: {
-              id: 'go',
+              id: 'white',
             },
             id: 'dots',
           },
           {
             match: {
-              id: 'python',
+              id: 'SlateGray',
             },
             id: 'dots',
           },
           {
             match: {
-              id: 'scala',
+              id: 'burgundy',
             },
             id: 'lines',
           },
           {
             match: {
-              id: 'lisp',
+              id: 'silver',
             },
             id: 'lines',
           },
           {
             match: {
-              id: 'elixir',
+              id: 'RosyBrown',
             },
             id: 'lines',
           },
@@ -151,4 +154,18 @@ const MyResponsivePie = ({ data, colorTheme }) => {
   );
 };
 
-export default MyResponsivePie;
+const mapStateToProps = (state) => {
+  return {
+    itemsbyColor: state.itemsbyColor,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getItemsbyColor: (colorId) => {
+      dispatch(getItemsbyColor(colorId));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyResponsivePie);

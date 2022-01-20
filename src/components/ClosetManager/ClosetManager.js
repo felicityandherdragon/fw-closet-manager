@@ -7,7 +7,7 @@ import MyResponsivePie from './ClosetManagerPie';
 import { getAllItems } from '../../store/getItems';
 import { getAllColorsbyUser } from '../../store/getColors';
 import { getItemsbyColor } from '../../store/getItemsbyColor';
-import useAllColors from '../../../hooks/useAllColors';
+import { simplifyforChart } from '../../../utils/helpers';
 
 const data = [
   {
@@ -44,9 +44,19 @@ const data = [
 
 const ClosetManager = (props) => {
   const [currentView, setCurrentView] = useState('byColor');
-  const [allColors] = useAllColors(props);
+  const [colorsforChart, setColorsforChart] = useState([]);
 
-  console.log(allColors);
+  useEffect(() => {
+    props.getAllColorsbyUser(
+      window.localStorage.getItem('sessionId')
+    );
+    if (props.allColors) {
+      const simpColors = simplifyforChart(props.allColors);
+      setColorsforChart(simpColors);
+    }
+  }, []);
+
+  console.log(colorsforChart);
 
   return (
     <div className="grid grid-cols-4 grid-rows-6 h-screen">
@@ -54,7 +64,7 @@ const ClosetManager = (props) => {
         <h2 className="row-span-1 p-3 text-2xl font-bold leading-7 sm:text-3xl sm:truncate border-b border-grey-light m-4 rounded-sm">
           Your wardrobe at a glance
         </h2>
-        {allColors?.length > 0 ? (
+        {props.allColors?.length > 0 ? (
           <>
             <Menu as="div" className="relative inline-block text-left">
               <div>
@@ -115,7 +125,7 @@ const ClosetManager = (props) => {
             </Menu>
             {currentView === 'byColor' && (
               <MyResponsivePie
-                data={data}
+                data={colorsforChart}
                 colorTheme={{ scheme: 'pink_yellowGreen' }}
               />
             )}
@@ -138,6 +148,7 @@ const mapStateToProps = (state) => {
   return {
     allItems: state.allItems,
     currentUser: state.currentUser,
+    allColors: state.allColors,
   };
 };
 
