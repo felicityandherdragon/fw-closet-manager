@@ -1,11 +1,13 @@
 import axios from 'axios';
+import { simplifyforChart } from '../../utils/helpers';
 const GET_ALL_COLORS = 'GET_ALL_COLORS';
 
 export const getAllColorsbyUser = (sessionId) => {
   return async (dispatch) => {
     try {
       const allColors = (await axios.get(`/api/colors/user/${sessionId}`)).data;
-      dispatch(_getAllColorsbyUser(allColors));
+      const colorsForChart = simplifyforChart(allColors);
+      dispatch(_getAllColorsbyUser(colorsForChart));
     } catch (err) {
       console.log(err);
       dispatch(_getAllColorsbyUser([]));

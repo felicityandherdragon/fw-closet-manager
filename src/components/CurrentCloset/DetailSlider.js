@@ -3,8 +3,6 @@ import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 
 const DetailSlider = ({ open, setOpen, currentItem }) => {
-  console.log(currentItem);
-
   const dateFormat = (date) => {
     const options = {
       weekday: 'long',
