@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/solid';
 import MyResponsivePie from './ClosetManagerPie';
-import ItemsGallery from './ItemsGallery';
 import { getAllItems } from '../../store/getItems';
 import { getAllColorsbyUser } from '../../store/getColors';
 import { getItemsbyColor } from '../../store/getItemsbyColor';
-import { simplifyforChart } from '../../../utils/helpers';
 
 const ClosetManager = (props) => {
   useEffect(() => {
