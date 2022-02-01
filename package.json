@@ -46,7 +46,8 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",
-    "sequelize": "^6.9.0"
+    "sequelize": "^6.9.0",
+    "axios": "^0.24.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -55,7 +56,6 @@
     "@babel/preset-env": "^7.16.0",
     "@babel/preset-react": "^7.12.13",
     "autoprefixer": "^10.4.0",
-    "axios": "^0.24.0",
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",

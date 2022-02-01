@@ -11,7 +11,7 @@ const WebcamComponent = ({ showCamera, setShowCamera }) => {
 
   const uploadToS3 = async (file) => {
     const url = (await axios.get('/s3url')).data;
-    const buf = new Buffer(file.replace(/^data:image\/\w+;base64,/, ''), 'base64');
+    const buf = Buffer.from(file.replace(/^data:image\/\w+;base64,/, ''), 'base64');
     try {
       const res = await axios.put(url, buf, {
         headers: {
