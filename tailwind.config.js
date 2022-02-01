@@ -36,6 +36,11 @@ module.exports = {
         dark: '#a3a3a3',
         light: '#f9f7f7',
       },
+      purple: {
+        DEFAULT: '#5a4eba',
+        dark: '#423a8e',
+        light: '#958de8',
+      },
     },
     fontFamily: {
       display: ['"Righteous", cursive'],
@@ -48,7 +53,8 @@ module.exports = {
       },
       spacing: {
         '128': '32rem',
-        '256': '64rem',
+        '192': '40rem',
+        '256': '56rem',
       },
     },
   },

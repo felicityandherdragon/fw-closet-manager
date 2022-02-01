@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, ClothingItem },
+  models: { User, ClothingItem, Colors, UserColors, ItemColors },
 } = require('../server/db');
 
 /**
@@ -28,10 +28,33 @@ async function seed() {
   const anna = users[1];
   const tester = users[2];
 
+  // seed colors
+  const seededColors = await Promise.all([
+    Colors.create({
+      colorName: 'burgundy',
+      colorValue: '#800020',
+    }),
+    Colors.create({
+      colorName: 'white',
+      colorValue: '#ffffff',
+    }),
+    Colors.create({
+      colorName: 'khaki',
+      colorValue: '#F0E68C',
+    }),
+  ]);
+
+  const burgundy = seededColors[0];
+  const white = seededColors[1];
+  const khaki = seededColors[2];
+
   //Seed clothing items
   const inventory = await Promise.all([
     ClothingItem.create({
-      color: ['burgundy'],
+      color: [{
+        colorName: 'burgundy',
+        colorValue: '#800020',
+      }],
       category: ['sweater'],
       brand: 'Sezane',
       itemName: 'A pretty burgendy sweater',
@@ -42,7 +65,10 @@ async function seed() {
       userId: felicity.id,
     }),
     ClothingItem.create({
-      color: ['white'],
+      color: [{
+        colorName: 'white',
+        colorValue: '#ffffff',
+      }],
       category: ['sweater'],
       brand: 'Sezane',
       itemName: 'A delicate white sweater',
@@ -53,7 +79,10 @@ async function seed() {
       userId: anna.id,
     }),
     ClothingItem.create({
-      color: ['khaki'],
+      color: [{
+        colorName: 'khaki',
+        colorValue: '#F0E68C',
+      }],
       category: ['coat'],
       brand: 'Sezane',
       itemName: 'Scott Trench Coat',
@@ -63,6 +92,50 @@ async function seed() {
       season: 'Autumn',
       userId: tester.id,
     }),
+    ClothingItem.create({
+      color: [{
+        colorName: 'white',
+        colorValue: '#ffffff',
+      }],
+      category: ['shirt'],
+      brand: 'Sezane',
+      itemName: 'Some white shirt',
+      purchasedOn: new Date('January 17').toString(),
+      imageSrc:
+        'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/shirt-white.jpeg',
+      season: 'Spring',
+      userId: felicity.id,
+    }),
+    ClothingItem.create({
+      color: [{
+        colorName: 'khaki',
+        colorValue: '#F0E68C',
+      }],
+      category: ['coat'],
+      brand: 'Sezane',
+      itemName: 'Some khaki coat',
+      purchasedOn: new Date('January 17').toString(),
+      imageSrc:
+        'https://closet-manager-s3-bucket.s3.us-east-2.amazonaws.com/khaki-coat.jpeg',
+      season: 'Autumn',
+      userId: felicity.id,
+    }),
+  ]);
+
+  await Promise.all([
+    ItemColors.create({colorId: burgundy.id, clothingitemId: inventory[0].id}),
+    ItemColors.create({colorId: white.id, clothingitemId: inventory[1].id}),
+    ItemColors.create({colorId: khaki.id, clothingitemId: inventory[2].id}),
+    ItemColors.create({colorId: white.id, clothingitemId: inventory[3].id}),
+    ItemColors.create({colorId: khaki.id, clothingitemId: inventory[4].id}),
+  ]);
+
+  await Promise.all([
+    UserColors.create({frequency: 1, userId: felicity.id, colorId: burgundy.id}),
+    UserColors.create({frequency: 1, userId: anna.id, colorId: white.id}),
+    UserColors.create({frequency: 1, userId: tester.id, colorId: khaki.id}),
+    UserColors.create({frequency: 1, userId: felicity.id, colorId: white.id}),
+    UserColors.create({frequency: 1, userId: felicity.id, colorId: khaki.id}),
   ]);
 }
 

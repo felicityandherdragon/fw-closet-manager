@@ -9,7 +9,7 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 import BannerNotification from '../BannerNotification';
-import { setCurrentUser } from '../../store/setUser';
+import { setCurrentUser, getUserBySession } from '../../store/setUser';
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_APIKEY,
@@ -37,7 +37,7 @@ const Login = (props) => {
         const user = userCredential.user;
         console.log(user);
         // console.log(props.currentUser);
-        props.setCurrentUser(user.email);
+        props.setCurrentUser(user.email, undefined);
         setMessage(`Welcome back, ${user.email}!`);
         setLoggedIn(true);
         setShowBanner(true);
@@ -63,7 +63,7 @@ const Login = (props) => {
         // The signed-in user info.
         const user = result.user;
         console.log(user);
-        props.setCurrentUser(user.email);
+        props.setCurrentUser(user.email, user.photoURL);
         setMessage(`Welcome back, ${user.email}!`);
         setLoggedIn(true);
         setShowBanner(true);
@@ -96,6 +96,12 @@ const Login = (props) => {
       )}
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
+          {window.localStorage.getItem('sessionId') && (
+            <img
+              src={props.currentUser.profilePic}
+              alt="user profile pic"
+            ></img>
+          )}
           <div>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-black">
               Sign in to your account
@@ -184,8 +190,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setCurrentUser: (email) => {
-      dispatch(setCurrentUser(email));
+    setCurrentUser: (email, profilePic) => {
+      dispatch(setCurrentUser(email, profilePic));
+    },
+    getUserBySession: (sessionId) => {
+      dispatch(getUserBySession(sessionId));
     },
   };
 };

@@ -1,47 +1,58 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Fragment } from 'react';
+import { connect } from 'react-redux';
 import MyResponsivePie from './ClosetManagerPie';
+import { getAllItems } from '../../store/getItems';
+import { getAllColorsbyUser } from '../../store/getColors';
+import { getItemsbyColor } from '../../store/getItemsbyColor';
 
-const data = [
-  {
-    'id': 'java',
-    'label': 'java',
-    'value': 95,
-    'color': 'hsl(247, 70%, 50%)'
-  },
-  {
-    'id': 'make',
-    'label': 'make',
-    'value': 124,
-    'color': 'hsl(242, 70%, 50%)'
-  },
-  {
-    'id': 'ruby',
-    'label': 'ruby',
-    'value': 135,
-    'color': 'hsl(36, 70%, 50%)'
-  },
-  {
-    'id': 'scala',
-    'label': 'scala',
-    'value': 347,
-    'color': 'hsl(75, 70%, 50%)'
-  },
-  {
-    'id': 'javascript',
-    'label': 'javascript',
-    'value': 574,
-    'color': 'hsl(106, 70%, 50%)'
-  }
-];
+const ClosetManager = (props) => {
+  useEffect(() => {
+    props.getAllColorsbyUser(window.localStorage.getItem('sessionId'));
+  }, [props.allItems, props.newItem]);
 
-const ClosetManager = () => {
   return (
-    <div>
-      <p>This is where closet manager shows</p>
-      <MyResponsivePie data={data} />
-      <p>This is where closet manager ends</p>
+    <div className="grid grid-cols-4 grid-rows-6 h-screen">
+      <div className="col-start-1 col-end-4">
+        <h2 className="row-span-1 p-3 text-2xl font-bold leading-7 sm:text-3xl sm:truncate border-b border-grey-light m-4 rounded-sm">
+          Your wardrobe at a glance
+        </h2>
+        {props.allColors?.length > 0 ? (
+          <>
+            <MyResponsivePie
+              data={props.allColors}
+              colorTheme={{ scheme: 'pink_yellowGreen' }}
+            />
+          </>
+        ) : (
+          <p>No items!</p>
+        )}
+      </div>
     </div>
   );
 };
 
-export default ClosetManager;
+const mapStateToProps = (state) => {
+  return {
+    allItems: state.allItems,
+    currentUser: state.currentUser,
+    allColors: state.allColors,
+    newItem: state.newItem,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAllItems: (sessionId) => {
+      dispatch(getAllItems(sessionId));
+    },
+    getAllColorsbyUser: (sessionId) => {
+      dispatch(getAllColorsbyUser(sessionId));
+    },
+    getItemsbyColor: (colorId) => {
+      dispatch(getItemsbyColor(colorId));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ClosetManager);

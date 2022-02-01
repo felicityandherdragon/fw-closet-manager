@@ -3,8 +3,6 @@ import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 
 const DetailSlider = ({ open, setOpen, currentItem }) => {
-  console.log(currentItem);
-
   const dateFormat = (date) => {
     const options = {
       weekday: 'long',
@@ -95,10 +93,11 @@ const DetailSlider = ({ open, setOpen, currentItem }) => {
                     <div className="flex">
                       {currentItem.color.map((color, idx) => (
                         <p
-                          className="mt-1 text-sm font-medium text-green-dark rounded-lg bg-green-light mx-1.5 p-2"
+                          className="mt-1 text-sm font-medium text-black rounded-lg mx-1.5 p-2 border border-black"
                           key={idx}
+                          style={{ backgroundColor: color.colorValue }}
                         >
-                          {color}
+                          {color.colorName}
                         </p>
                       ))}
                     </div>

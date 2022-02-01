@@ -16,12 +16,27 @@ router.get('/', async (req, res, next) => {
 
 router.get('/byemail', async (req, res, next) => {
   try {
-    console.log('on server side!');
-    const results = await User.findOne({ where: { email: req.query.email } });
     const sessionToken = crypto.randomBytes(20).toString('hex');
-    await results.update({ currentSession: sessionToken });
-    console.log(results);
-    res.send(results);
+    const results = await User.findOne({ where: { email: req.query.email } });
+    if (results) {
+      await results.update({
+        currentSession: sessionToken,
+        profilePic: req.query.profilePic,
+      });
+      console.log('if user existing', results);
+      res.send(results);
+    } else {
+      console.log('profile pic link?', req.query.profilePic);
+      const newUser = await User.create({
+        email: req.query.email,
+        currentSession: sessionToken,
+      });
+      await newUser.update({
+        profilePic: req.query.profilePic,
+      });
+      console.log('if new user', newUser);
+      res.send(newUser);
+    }
   } catch (err) {
     next(err);
   }

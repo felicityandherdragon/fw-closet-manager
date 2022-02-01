@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { LockClosedIcon } from '@heroicons/react/solid';
 import { initializeApp } from 'firebase/app';
 import {
@@ -8,6 +9,7 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 import BannerNotification from '../BannerNotification';
+import { setCurrentUser } from '../../store/setUser';
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_APIKEY,
@@ -19,7 +21,7 @@ const firebaseConfig = {
   measurementId: 'G-4FKR9W1FV4',
 };
 
-const Signup = () => {
+const Signup = (props) => {
   const [input, setInput] = useState({ email: '', password: '' });
   const [message, setMessage] = useState('');
   const [showBanner, setShowBanner] = useState(false);
@@ -35,6 +37,7 @@ const Signup = () => {
         const user = userCredential.user;
         console.log(user);
         setMessage(`Thank you for signing up! Account created with ${user.email}`);
+        props.setCurrentUser(user.email, undefined);
         setLoggedIn(true);
         setShowBanner(true);
       })
@@ -58,6 +61,7 @@ const Signup = () => {
         const user = result.user;
         console.log(user);
         setMessage(`Welcome, ${user.email}!`);
+        props.setCurrentUser(user.email, user.photoURL);
         setLoggedIn(true);
         setShowBanner(true);
       })
@@ -164,4 +168,18 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCurrentUser: (email, profilePic) => {
+      dispatch(setCurrentUser(email, profilePic));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
