@@ -9,7 +9,7 @@ import { getItemsbyColor } from '../../store/getItemsbyColor';
 const ClosetManager = (props) => {
   useEffect(() => {
     props.getAllColorsbyUser(window.localStorage.getItem('sessionId'));
-  }, []);
+  }, [props.allItems, props.newItem]);
 
   return (
     <div className="grid grid-cols-4 grid-rows-6 h-screen">
@@ -37,6 +37,7 @@ const mapStateToProps = (state) => {
     allItems: state.allItems,
     currentUser: state.currentUser,
     allColors: state.allColors,
+    newItem: state.newItem,
   };
 };
 

@@ -15,7 +15,7 @@ const MyResponsivePie = ({
   // const [items, setItems] = useState([]);
 
   const checkMore = (e) => {
-    getItemsbyColor(e.data.colorId);
+    getItemsbyColor(e.data.colorId, window.localStorage.getItem('sessionId'));
     // setItems(itemsbyColor);
     setOpenGallery(true);
   };
@@ -172,8 +172,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getItemsbyColor: (colorId) => {
-      dispatch(getItemsbyColor(colorId));
+    getItemsbyColor: (colorId, sessionId) => {
+      dispatch(getItemsbyColor(colorId, sessionId));
     },
   };
 };
