@@ -16,6 +16,7 @@ const reducer = combineReducers({
   itemsbyColor: itemsbyColorReducer,
 });
 let middleware = applyMiddleware(thunkMiddleware);
+// how about now?
 if (process.env.API_URL.includes('localhost')) {
   middleware = composeWithDevTools(
     applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
