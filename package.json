@@ -2,7 +2,6 @@
   "name": "closet-manager",
   "version": "1.0.0",
   "description": "an app to manage your closet",
-  "main": "index.js",
   "scripts": {
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
@@ -25,6 +24,8 @@
     "@heroicons/react": "^1.0.5",
     "@nivo/core": "^0.78.0",
     "@nivo/pie": "^0.78.0",
+    "@react-spring/web": "^9.4.2",
+    "axios": "^0.24.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^10.0.0",
@@ -46,8 +47,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",
-    "sequelize": "^6.9.0",
-    "axios": "^0.24.0"
+    "sequelize": "^6.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
