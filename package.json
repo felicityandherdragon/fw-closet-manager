@@ -47,7 +47,8 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",
-    "sequelize": "^6.9.0"
+    "sequelize": "^6.9.0",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -63,7 +64,6 @@
     "eslint-plugin-react": "^7.27.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^7.0.4",
-    "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "parcel": "^2.0.1",
     "postcss": "^8.3.11",
