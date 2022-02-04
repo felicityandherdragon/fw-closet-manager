@@ -38,7 +38,7 @@ const AddNew = () => {
     setShowBarcode(true);
   };
 
-  const leftClass = `col-span-1 grid grid-cols-4 grid-rows-6 border-r-2 border-grey-light ${bg === 'left' && 'bg-addnew-texture'} bg-repeat`;
+  const leftClass = `col-span-1 grid grid-cols-4 grid-rows-6 border-r-2 border-beige-dark ${bg === 'left' && 'bg-addnew-texture'} bg-repeat`;
 
   const rightClass = `col-span-1 grid grid-cols-4 grid-rows-6 ${bg === 'right' && 'bg-addnew-texture'} bg-repeat`;
 
@@ -46,7 +46,7 @@ const AddNew = () => {
     <div className="grid grid-cols-2 h-screen">
       <div className={leftClass}>
         <div
-          className="col-start-2 col-end-4 row-start-3 row-end-5 rounded-lg text-xl border-2 border-transparent bg-grey-light shadow-md flex flex-col justify-center place-items-center hover:shadow-2xl bg-gradient-to-r hover:from-green-light to-transparent hover:border-green"
+          className="col-start-2 col-end-4 row-start-3 row-end-5 rounded-lg text-xl border-2 border-transparent bg-white shadow-md flex flex-col justify-center place-items-center hover:shadow-2xl bg-gradient-to-r hover:from-green-light to-transparent hover:border-green"
           // onMouseEnter={() => launchReward()}
           onMouseEnter={() => showBg('left')}
         >
@@ -66,7 +66,7 @@ const AddNew = () => {
         </div>
       </div>
       <div className={rightClass}>
-        <div className="col-start-2 col-end-4 row-start-3 row-end-5 rounded-lg text-xl border-2 border-transparent bg-grey-light shadow-md flex flex-col justify-center place-items-center hover:shadow-2xl bg-gradient-to-r hover:from-blue-light to-transparent hover:border-blue" onMouseEnter={() => showBg('right')}>
+        <div className="col-start-2 col-end-4 row-start-3 row-end-5 rounded-lg text-xl border-2 border-transparent bg-white shadow-md flex flex-col justify-center place-items-center hover:shadow-2xl bg-gradient-to-r hover:from-blue-light to-transparent hover:border-blue" onMouseEnter={() => showBg('right')}>
           <TiUploadOutline />
           <button onClick={() => launchUpload()}>upload a picture</button>
           {showUpload && (

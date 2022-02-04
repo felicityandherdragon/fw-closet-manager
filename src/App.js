@@ -9,7 +9,7 @@ import Nav from './components/Nav';
 const App = () => {
   return (
     <Router>
-      <div className="p-0 m-0 bg-white w-screen h-screen grid grid-cols-8">
+      <div className="p-0 m-0 bg-beige w-screen h-screen grid grid-cols-8">
         <Nav />
         <main className="col-span-7">
           <Routing />

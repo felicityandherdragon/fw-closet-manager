@@ -6,6 +6,12 @@ module.exports = {
       transparent: 'transparent',
       white: '#ffffff',
       black: '#333',
+      beige: {
+        light: '#FBF9F6',
+        DEFAULT: '#FBF9F6',
+        dark: '#e0e0e0',
+      },
+      grassGreen: '#20D488',
       blue: {
         light: '#c5dbe5',
         DEFAULT: '#6d81a8',
@@ -37,13 +43,13 @@ module.exports = {
         light: '#f9f7f7',
       },
       purple: {
-        DEFAULT: '#5a4eba',
+        DEFAULT: '#5710B2',
         dark: '#423a8e',
         light: '#958de8',
       },
     },
     fontFamily: {
-      display: ['"Righteous", cursive'],
+      display: ['"Supermercado One", cursive'],
       body: ['"Rubik", sans-serif'],
     },
     extend: {
