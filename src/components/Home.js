@@ -6,7 +6,7 @@ const Home = () => {
     <div>
       <TypeWriterEffect
         textStyle={{
-          fontFamily: '"Righteous", cursive',
+          fontFamily: '"Supermercado One", cursive',
           color: '#3F3D56',
           fontWeight: 500,
           fontSize: '1.5em',

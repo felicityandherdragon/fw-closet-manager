@@ -43,7 +43,7 @@ const CurrentCloset = (props) => {
   ];
 
   return (
-    <div className="bg-white">
+    <div className="bg-beige">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8 grid grid-cols-4">
         <h2 className="sr-only">All items</h2>
         <div className="col-start-1 col-end-4 grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
@@ -91,7 +91,7 @@ const CurrentCloset = (props) => {
               {({ open }) => (
                 <>
                   <h3 className="-mx-2 -my-3 flow-root">
-                    <Disclosure.Button className="px-2 py-3 bg-white w-full flex items-center justify-between text-grey hover:text-grey">
+                    <Disclosure.Button className="px-2 py-3 bg-beige w-full flex items-center justify-between text-grey hover:text-grey">
                       <span className="font-medium text-black">
                         {section.name}
                       </span>

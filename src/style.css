@@ -4,5 +4,8 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Lato', sans-serif;
+}
+
+#root {
+  background: #FBF9F6;
 }

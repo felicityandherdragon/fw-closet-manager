@@ -8,8 +8,8 @@ const LogOut = (props) => {
   }, []);
 
   return (
-    <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="space-y-8 flex items-center mb-2">
         <img src={props.currentUser.profilePic} alt="user profile pic"></img>
       </div>
       <div>
