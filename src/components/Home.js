@@ -15,7 +15,7 @@ const Home = () => {
         cursorColor="#612e2d"
         multiText={[
           'Hey there, this is the homepage',
-          'This is your closet manager!',
+          'This is your wardrobe manager!',
         ]}
         multiTextDelay={1000}
         typeSpeed={30}
