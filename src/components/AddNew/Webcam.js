@@ -11,9 +11,18 @@ const WebcamComponent = ({ showCamera, setShowCamera }) => {
 
   const uploadToS3 = async (file) => {
     const url = (await axios.get('/s3url')).data;
-    // const buf = Buffer.from(file.replace(/^data:image\/\w+;base64,/, ''), 'base64');
+    const buf = Buffer.from(file.replace(/^data:image\/\w+;base64,/, ''), 'base64');
+    const bufServer = (
+      await axios.post('/s3url', {
+        file: file,
+      })
+    ).data;
+
+    console.log('buf from server', bufServer);
+    console.log('buf from client', buf);
+
     try {
-      const res = await axios.put(url, file, {
+      const res = await axios.put(url, buf, {
         headers: {
           'Content-Encoding': 'base64',
           'Content-Type': 'image/jpeg',
@@ -94,7 +103,10 @@ const WebcamComponent = ({ showCamera, setShowCamera }) => {
                       {imgSrc && (
                         <>
                           <img src={imgSrc} alt="newly taken" />
-                          <AddNewForm imageSrc={imgSrc} setModal={setShowCamera} />
+                          <AddNewForm
+                            imageSrc={imgSrc}
+                            setModal={setShowCamera}
+                          />
                         </>
                       )}
                     </div>

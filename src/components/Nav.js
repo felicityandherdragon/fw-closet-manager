@@ -19,11 +19,11 @@ const Nav = () => {
         </li>
         <li className={listItemStyle}>
           <Link to="/current-closet">
-            Current Closet
+            Current Wardrobe
           </Link>
         </li>
         <li className={listItemStyle}>
-          <Link to="/manager">Closet Manager</Link>
+          <Link to="/manager">Wardrobe Manager</Link>
         </li>
         <li className={listItemStyle}>
           <Link to="/login">Log In</Link>

@@ -9,6 +9,7 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 import BannerNotification from '../BannerNotification';
+import LogOut from './LogOut';
 import { setCurrentUser, getUserBySession } from '../../store/setUser';
 
 const firebaseConfig = {
@@ -96,12 +97,7 @@ const Login = (props) => {
       )}
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
-          {window.localStorage.getItem('sessionId') && (
-            <img
-              src={props.currentUser.profilePic}
-              alt="user profile pic"
-            ></img>
-          )}
+          {window.localStorage.getItem('sessionId') && <LogOut />}
           <div>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-black">
               Sign in to your account
