@@ -90,7 +90,7 @@ const DetailSlider = ({ open, setOpen, currentItem }) => {
                     <p className="mt-1 text-lg font-medium text-black">
                       Colors
                     </p>
-                    <div className="flex">
+                    <div className="flex overflow-x-scroll">
                       {currentItem.color.map((color, idx) => (
                         <p
                           className="mt-1 text-sm font-medium text-black rounded-lg mx-1.5 p-2 border border-black"
@@ -104,7 +104,7 @@ const DetailSlider = ({ open, setOpen, currentItem }) => {
                     <p className="mt-1 text-lg font-medium text-black">
                       Category
                     </p>
-                    <div className="flex">
+                    <div className="flex overflow-x-scroll">
                       {currentItem.category.map((cat, idx) => (
                         <p
                           className="mt-1 text-sm font-medium rounded-lg bg-blue-light mx-1.5 p-2 text-blue-dark"
