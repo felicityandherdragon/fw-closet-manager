@@ -24,7 +24,7 @@ const MyResponsivePie = ({
 
   return (
     <>
-      <div className="w-256 h-256">
+      <div className="w-218 h-218">
         <ResponsivePie
           data={data}
           margin={{ top: 40, right: 200, bottom: 80, left: 120 }}
