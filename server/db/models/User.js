@@ -1,4 +1,4 @@
-const { UUID, UUIDV4, STRING } = require('sequelize');
+const { UUID, UUIDV4, STRING, BOOLEAN } = require('sequelize');
 const db = require('../db');
 
 const User = db.define('user', {
@@ -23,6 +23,10 @@ const User = db.define('user', {
   currentSession: {
     type: STRING,
     allowNull: true,
+  },
+  isAdmin: {
+    type: BOOLEAN,
+    defaultValue: false
   }
 });
 

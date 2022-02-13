@@ -36,8 +36,6 @@ const Login = (props) => {
     signInWithEmailAndPassword(auth, input.email, input.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
-        // console.log(props.currentUser);
         props.setCurrentUser(user.email, undefined);
         setMessage(`Welcome back, ${user.email}!`);
         setLoggedIn(true);
@@ -63,7 +61,6 @@ const Login = (props) => {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        console.log(user);
         props.setCurrentUser(user.email, user.photoURL);
         setMessage(`Welcome back, ${user.email}!`);
         setLoggedIn(true);
@@ -83,8 +80,6 @@ const Login = (props) => {
         setShowBanner(true);
       });
   };
-
-  console.log(props.currentUser);
 
   return (
     <>

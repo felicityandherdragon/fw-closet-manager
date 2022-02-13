@@ -5,14 +5,14 @@ const {
 } = require('../db');
 module.exports = router;
 
-router.get('/', async (req, res, next) => {
-  try {
-    const results = await User.findAll();
-    res.send(results);
-  } catch (err) {
-    next(err);
-  }
-});
+// router.get('/', async (req, res, next) => {
+//   try {
+//     const results = await User.findAll();
+//     res.send(results);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 router.get('/byemail', async (req, res, next) => {
   try {
@@ -23,10 +23,8 @@ router.get('/byemail', async (req, res, next) => {
         currentSession: sessionToken,
         profilePic: req.query.profilePic,
       });
-      console.log('if user existing', results);
       res.send(results);
     } else {
-      console.log('profile pic link?', req.query.profilePic);
       const newUser = await User.create({
         email: req.query.email,
         currentSession: sessionToken,
@@ -34,7 +32,6 @@ router.get('/byemail', async (req, res, next) => {
       await newUser.update({
         profilePic: req.query.profilePic,
       });
-      console.log('if new user', newUser);
       res.send(newUser);
     }
   } catch (err) {
