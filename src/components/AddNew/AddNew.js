@@ -11,13 +11,6 @@ const AddNew = () => {
   const [bg, setBg] = useState('');
   const [showBarcode, setShowBarcode] = useState(false);
 
-  // const rewardEffectEl = useRef(null);
-
-  // const launchReward = () => {
-  //   console.log(rewardEffectEl);
-  //   rewardEffectEl.current.rewardMe();
-  // };
-
   const showBg = (side) => {
     if (side === 'left') {
       setBg('left');

@@ -12,15 +12,11 @@ const MyResponsivePie = ({
   itemsbyColor,
 }) => {
   const [openGallery, setOpenGallery] = useState(false);
-  // const [items, setItems] = useState([]);
 
   const checkMore = (e) => {
     getItemsbyColor(e.data.colorId, window.localStorage.getItem('sessionId'));
-    // setItems(itemsbyColor);
     setOpenGallery(true);
   };
-
-  console.log(itemsbyColor);
 
   return (
     <>

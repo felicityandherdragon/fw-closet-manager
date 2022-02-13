@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { addNewItem } from '../../store/addItems';
 
 const AddNewForm = (props) => {
-  // console.log(props.currentUser);
   const [item, setItem] = useState({
     itemName: '',
     brand: '',
@@ -16,7 +15,6 @@ const AddNewForm = (props) => {
   });
   const [err, setErr] = useState('');
 
-  console.log(item);
   const makePrediction = async (imageSrc) => {
     try {
       const resColor = (
@@ -34,9 +32,6 @@ const AddNewForm = (props) => {
           },
         })
       ).data;
-
-      console.log(resColor);
-      console.log(resCategory);
 
       const colors = resColor.map((each) => {
         return {

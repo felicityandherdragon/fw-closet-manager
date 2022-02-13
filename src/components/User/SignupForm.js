@@ -35,7 +35,6 @@ const Signup = (props) => {
     createUserWithEmailAndPassword(auth, input.email, input.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
         setMessage(`Thank you for signing up! Account created with ${user.email}`);
         props.setCurrentUser(user.email, undefined);
         setLoggedIn(true);
@@ -59,7 +58,6 @@ const Signup = (props) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
-        console.log(user);
         setMessage(`Welcome, ${user.email}!`);
         props.setCurrentUser(user.email, user.photoURL);
         setLoggedIn(true);

@@ -47,8 +47,6 @@ const UploadBox = ({ setShowUpload }) => {
     }
   };
 
-  console.log(file);
-
   return (
     <div
       className="fixed z-10 inset-0 overflow-y-auto"
