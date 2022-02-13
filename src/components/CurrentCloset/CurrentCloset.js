@@ -43,7 +43,7 @@ const CurrentCloset = (props) => {
   ];
 
   return (
-    <div className="bg-beige">
+    <div className="bg-beige h-screen overflow-scroll">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8 grid grid-cols-4">
         <h2 className="sr-only">All items</h2>
         <div className="col-start-1 col-end-4 grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">

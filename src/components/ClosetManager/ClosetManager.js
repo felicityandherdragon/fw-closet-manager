@@ -12,7 +12,7 @@ const ClosetManager = (props) => {
   }, [props.allItems, props.newItem]);
 
   return (
-    <div className="grid grid-cols-4 grid-rows-6 h-screen">
+    <div className="grid grid-cols-4 grid-rows-6 h-screen overflow-scroll">
       <div className="col-start-1 col-end-4">
         <h2 className="row-span-1 p-3 text-2xl font-bold leading-7 sm:text-3xl sm:truncate border-b border-grey-light m-4 rounded-sm">
           Your wardrobe at a glance

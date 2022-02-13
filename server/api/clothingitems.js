@@ -4,16 +4,16 @@ const {
 } = require('../db');
 module.exports = router;
 
-router.get('/', async (req, res, next) => {
-  try {
-    const results = await ClothingItem.findAll({
-      include: [User],
-    });
-    res.send(results);
-  } catch (err) {
-    next(err);
-  }
-});
+// router.get('/', async (req, res, next) => {
+//   try {
+//     const results = await ClothingItem.findAll({
+//       include: [User],
+//     });
+//     res.send(results);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 router.get('/:sessionId', async (req, res, next) => {
   try {
