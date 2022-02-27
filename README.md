@@ -9,9 +9,9 @@ https://bit.ly/3rwDRNW
 test@mail.com / 123456
 
 ## Built with
-React
-Parcel
-tailwindcss
-Clarifai
-Amazon S3
-Firebase
+- React
+- Parcel
+- tailwindcss
+- Clarifai API
+- Amazon S3
+- Firebase
