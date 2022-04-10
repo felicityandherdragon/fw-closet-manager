@@ -43,7 +43,6 @@ const Signup = (props) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorMessage);
         setMessage(errorMessage);
         setLoggedIn(false);
         setShowBanner(true);
@@ -68,7 +67,6 @@ const Signup = (props) => {
         const errorMessage = error.message;
         const email = error.email;
         const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(errorMessage);
         setMessage(errorMessage);
         setLoggedIn(false);
         setShowBanner(true);

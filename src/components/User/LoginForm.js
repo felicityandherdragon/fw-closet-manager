@@ -44,7 +44,6 @@ const Login = (props) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorMessage);
         setMessage(errorMessage);
         setLoggedIn(false);
         setShowBanner(true);
@@ -74,7 +73,6 @@ const Login = (props) => {
         const email = error.email;
         // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(errorMessage);
         setMessage(errorMessage);
         setLoggedIn(false);
         setShowBanner(true);
