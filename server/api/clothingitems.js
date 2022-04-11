@@ -36,7 +36,6 @@ router.get('/:sessionId', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log(req.body);
     const {
       itemName,
       brand,

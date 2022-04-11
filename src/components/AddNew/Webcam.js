@@ -18,9 +18,6 @@ const WebcamComponent = ({ showCamera, setShowCamera }) => {
       })
     ).data;
 
-    console.log('buf from server', bufServer);
-    console.log('buf from client', buf);
-
     try {
       const res = await axios.put(url, buf, {
         headers: {

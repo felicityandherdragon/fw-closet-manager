@@ -3,7 +3,6 @@ import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 
 const ItemsGallery = ({ open, setOpen, items }) => {
-  console.log(items);
 
   return (
     <Transition.Root show={open} as={Fragment}>
