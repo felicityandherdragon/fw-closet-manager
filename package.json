@@ -7,7 +7,7 @@
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "dev": "parcel src/index.html",
     "build": "parcel build src/index.html",
-    "start": "NODE_ENV=production npm run seed && node server && npm run build",
+    "start": "NODE_ENV=production node server && npm run build",
     "start:dev": "npm run dev & npm run start-server",
     "start:dev:logger": "LOGGING=true npm run start:dev",
     "start-server": "nodemon server -e html,js,scss --ignore src",
