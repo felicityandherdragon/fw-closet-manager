@@ -2,7 +2,7 @@ steps:
   - label: "Example"
     command: echo "Hello!"
   - name: ":node: build and start"
-    command: npm run dev & npm run start-server
+    command: npm run seed && node server && npm run build
     plugins:
       - docker-compose#v3.9.0:
           run: app
