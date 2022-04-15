@@ -1,3 +1,8 @@
 steps:
   - label: "Example"
     command: echo "Hello!"
+  - name: "🔮 build frontend"
+    command: npm run build
+    plugins:
+      - docker-compose#v3.9.0:
+          run: app
